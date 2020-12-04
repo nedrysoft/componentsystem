@@ -42,7 +42,7 @@ QList<QLabel *> labels = Nedrysoft::ComponentSystem::getObjects<QLabel>();
 
 ## Architecture Diagram
 
-![architecture diagram](https://user-images.githubusercontent.com/55795671/101108968-a784d400-35cd-11eb-9b99-438e94ea65dd.png)
+![architecture diagram](https://user-images.githubusercontent.com/55795671/101220097-f76ea400-367c-11eb-9d47-059649d7e1ab.png)
 
 ### Nedrysoft::ComponentSystem::ComponentLoader
 
