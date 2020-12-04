@@ -34,7 +34,7 @@ QList<QObject *> objects = Nedrysoft::ComponentSystem::allObjects();
 
 auto myLabel = Nedrysoft::ComponentSystem::getObject<QLabel>();
 
-// get the first matching object of the given type
+// get all objects of the given type
 
 QList<QLabel *> labels = Nedrysoft::ComponentSystem::getObjects<QLabel>();
 
