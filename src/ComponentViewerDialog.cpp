@@ -17,20 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ComponentViewerDialog.h"
+#include "includes/ComponentSystem/ComponentViewerDialog.h"
 
-#include "ComponentDetailsDialog.h"
-#include "Component.h"
-#include "ComponentSystem/includes/ComponentLoader.h"
-#include "IComponentManager.h"
+#include "includes/ComponentSystem/ComponentDetailsDialog.h"
+#include "includes/ComponentSystem/Component.h"
+#include "includes/ComponentSystem/ComponentLoader.h"
+#include "includes/ComponentSystem/IComponentManager.h"
 #include "FontAwesome.h"
 #include "ui_ComponentViewerDialog.h"
 
 #include <QTreeWidgetItem>
 
-Nedrysoft::Core::ComponentViewerDialog::ComponentViewerDialog(QWidget *parent) :
+Nedrysoft::ComponentSystem::ComponentViewerDialog::ComponentViewerDialog(QWidget *parent) :
         QDialog(parent),
-        ui(new Nedrysoft::Core::Ui::ComponentViewerDialog) {
+        ui(new Nedrysoft::ComponentSystem::Ui::ComponentViewerDialog) {
 
     ui->setupUi(this);
 
@@ -112,11 +112,11 @@ Nedrysoft::Core::ComponentViewerDialog::ComponentViewerDialog(QWidget *parent) :
     ui->componentsTreeWidget->expandAll();
 }
 
-Nedrysoft::Core::ComponentViewerDialog::~ComponentViewerDialog() {
+Nedrysoft::ComponentSystem::ComponentViewerDialog::~ComponentViewerDialog() {
     delete ui;
 }
 
-void Nedrysoft::Core::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column) {
+void Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column) {
     Q_UNUSED(column)
 
     auto component = item->data(0, Qt::UserRole).value<Nedrysoft::ComponentSystem::Component *>();
@@ -128,7 +128,7 @@ void Nedrysoft::Core::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleC
     }
 }
 
-QStringList Nedrysoft::Core::ComponentViewerDialog::disabledComponents() {
+QStringList Nedrysoft::ComponentSystem::ComponentViewerDialog::disabledComponents() {
     QStringList disabledComponentList;
 
     for (auto categoryIndex = 0; categoryIndex < ui->componentsTreeWidget->topLevelItemCount(); categoryIndex++) {

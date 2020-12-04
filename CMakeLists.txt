@@ -37,16 +37,16 @@ project(ComponentSystem)
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
 set(library_SOURCES
+    includes/ComponentSystem/Component.h
+    includes/ComponentSystem/ComponentLoader.h
+    includes/ComponentSystem/ComponentSystemSpec.h
+    includes/ComponentSystem/IComponent.h
+    includes/ComponentSystem/IComponentManager.h
+    includes/ComponentSystem/IInterface.h
     src/Component.cpp
-    src/Component.h
     src/ComponentLoader.cpp
-    includes/ComponentLoader.h
-    src/ComponentSystemSpec.h
     src/IComponent.cpp
-    src/IComponent.h
     src/IComponentManager.cpp
-    src/IComponentManager.h
-    src/IInterface.h
 )
 
 set(Qt_LIBS "Qt5::Core")
@@ -59,11 +59,11 @@ if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
     find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
     set(Viewer_SOURCES
+        includes/ComponentSystem/ComponentDetailsDialog.h
+        includes/ComponentSystem/ComponentViewerDialog.h
         src/ComponentDetailsDialog.cpp
-        src/ComponentDetailsDialog.h
         src/ComponentDetailsDialog.ui
         src/ComponentViewerDialog.cpp
-        src/ComponentViewerDialog.h
         src/ComponentViewerDialog.ui
         src/FontAwesome.cpp
         src/FontAwesome.h

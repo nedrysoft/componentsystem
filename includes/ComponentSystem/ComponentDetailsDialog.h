@@ -22,9 +22,11 @@
 
 #include "Component.h"
 
+#include "ComponentSystemSpec.h"
+
 #include <QDialog>
 
-namespace Nedrysoft::Core {
+namespace Nedrysoft::ComponentSystem {
     namespace Ui {
         class ComponentDetailsDialog;
     }
@@ -36,7 +38,7 @@ namespace Nedrysoft::Core {
      *              a component.
      *
      */
-    class ComponentDetailsDialog :
+    class COMPONENT_SYSTEM_DLLSPEC ComponentDetailsDialog :
             public QDialog {
 
         private:

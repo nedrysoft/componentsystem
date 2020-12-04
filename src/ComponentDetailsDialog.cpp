@@ -17,14 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ComponentDetailsDialog.h"
+#include "includes/ComponentSystem/ComponentDetailsDialog.h"
 
 #include "ui_ComponentDetailsDialog.h"
 
-Nedrysoft::Core::ComponentDetailsDialog::ComponentDetailsDialog(Nedrysoft::ComponentSystem::Component *component,
+Nedrysoft::ComponentSystem::ComponentDetailsDialog::ComponentDetailsDialog(Nedrysoft::ComponentSystem::Component *component,
                                                                 QWidget *parent) :
         QDialog(parent),
-        ui(new Nedrysoft::Core::Ui::ComponentDetailsDialog) {
+        ui(new Nedrysoft::ComponentSystem::Ui::ComponentDetailsDialog) {
 
     ui->setupUi(this);
 
@@ -40,6 +40,6 @@ Nedrysoft::Core::ComponentDetailsDialog::ComponentDetailsDialog(Nedrysoft::Compo
     ui->locationLineEdit->setText(component->filename());
 }
 
-Nedrysoft::Core::ComponentDetailsDialog::~ComponentDetailsDialog() {
+Nedrysoft::ComponentSystem::ComponentDetailsDialog::~ComponentDetailsDialog() {
     delete ui;
 }

@@ -17,9 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Component.h"
+#include "includes/ComponentSystem/Component.h"
 
-#include "includes/ComponentLoader.h"
+#include "includes/ComponentSystem/ComponentLoader.h"
 
 #include <QJsonArray>
 

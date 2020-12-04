@@ -20,10 +20,12 @@
 #ifndef NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWERDIALOG_H
 #define NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWERDIALOG_H
 
+#include "ComponentSystemSpec.h"
+
 #include <QDialog>
 #include <QTreeWidgetItem>
 
-namespace Nedrysoft::Core {
+namespace Nedrysoft::ComponentSystem {
     namespace Ui {
         class ComponentViewerDialog;
     }
@@ -36,7 +38,7 @@ namespace Nedrysoft::Core {
      *              detailed information to be displayed.
      *
      */
-    class ComponentViewerDialog :
+    class COMPONENT_SYSTEM_DLLSPEC ComponentViewerDialog :
             public QDialog {
 
         private:
