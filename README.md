@@ -110,7 +110,7 @@ class Q_DECL_EXPORT MyComponent :
 ```c++
 #include "MyComponent.h"
 
-#include "ComponentSystem/IComponentManager.h"
+#include "IComponentManager.h"
 
 MyComponent::MyComponent() {
     // called when the component is instantiated by the loader
@@ -122,11 +122,11 @@ MyComponent::~MyComponent() {
 
 void MyComponent::initialiseEvent() {
     // as an example, create q QLabel and add it to the registry, the object can then
-    // be found after initialisation has finished by any other component
+    // be found by other components in their initialisationFinishedEvent method
+
+    Nedrysoft::ComponentSystem::addObject(new QLabel);
 }
 
-Nedrysoft::ComponentSystem::addObject(new QLabel);
-}
 
 void MyComponent::initialisationFinishedEvent() {
     // called by the loader after all components have been loaded and initialised.
