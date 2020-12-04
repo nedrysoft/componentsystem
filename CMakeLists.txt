@@ -40,7 +40,7 @@ set(library_SOURCES
     src/Component.cpp
     src/Component.h
     src/ComponentLoader.cpp
-    src/ComponentLoader.h
+    includes/ComponentLoader.h
     src/ComponentSystemSpec.h
     src/IComponent.cpp
     src/IComponent.h
@@ -50,6 +50,8 @@ set(library_SOURCES
 )
 
 set(Qt_LIBS "Qt5::Core")
+
+include_directories("src" "includes")
 
 option(NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER "Include Component Viewer" OFF)
 

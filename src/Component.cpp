@@ -19,7 +19,7 @@
 
 #include "Component.h"
 
-#include "ComponentLoader.h"
+#include "includes/ComponentLoader.h"
 
 #include <QJsonArray>
 
