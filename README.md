@@ -5,6 +5,14 @@ The component system library provides an abstracted layer to build modular appli
 * The "Components" are dynamic libraries that implement the IComponent interface.
 * The "Object Registry" which provides a centralised store for object instances that allows other components to discover them.
 
+This library takes the Qt plugin system and provides a higher-level way to use it.  Because plugins all derive from the IComponent interface, the plugin does not have fixed functionality like a standard plugin would, instead the combining of the IComponent interface with the object registry allows much more abstracted and scalable applications.
+
+Components can and should define custom interfaces which other components can find instances of in the object registry.
+
+The application Pingnoo (https://github.com/fizzyade/pingnoo) uses this component system (and indeed was where it was born), and the main application performs just two tasks.
+
+Firstly it invokes the component loader, which figures out the dependencies and load order, and secondly, it starts the Qt event loop; the components themselves provide the main window and all other functionality.
+
 ## The Component
 
 Each "component" is a dynamically loaded library complete with extra metadata which allows the component system to resolve dependencies and ensure that loading occurs in the correct order.
@@ -46,7 +54,7 @@ QList<QLabel *> labels = Nedrysoft::ComponentSystem::getObjects<QLabel>();
 
 ### Nedrysoft::ComponentSystem::ComponentLoader
 
-The Nedrysoft::ComponentLoader class is responsible for loading components.  You can add as many search locations as you need, it will open each component that it finds in turn and figure out dependencies and the correct load order.
+The Nedrysoft::ComponentSystem::ComponentLoader class is responsible for loading components.  You can add as many search locations as you need, it will open each component that it finds in turn and figure out dependencies and the correct load order.
 
 ### Nedrysoft::ComponentSystem::IInterface
 
@@ -110,7 +118,7 @@ class Q_DECL_EXPORT MyComponent :
 ```c++
 #include "MyComponent.h"
 
-#include "IComponentManager.h"
+#include "ComponentSystem/IComponentManager.h"
 
 MyComponent::MyComponent() {
     // called when the component is instantiated by the loader
@@ -192,7 +200,8 @@ The metadata is a JSON formatted structure that is retrieved by the Component Lo
 
 ## Component Viewer
 
-The component viewer provides a list of all the components that were found by the loader, along with their status (loaded, disabled, incompatible etc.) and additionally provides the means to enable or disable components from being used.
+The Nedrysoft::ComponentSystem::ComponentViewerDialog
+dialog provides a list of all the components that were found by the loader, along with their status (loaded, disabled, incompatible etc.). Additionally, it provides the means to enable or disable components from being used.
 
 ![component viewer](https://user-images.githubusercontent.com/55795671/101047358-b17ce780-3579-11eb-8044-24f8263c7004.png)
 
