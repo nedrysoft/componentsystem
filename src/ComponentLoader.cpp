@@ -65,13 +65,13 @@ void Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
     auto forceDebugQtLibraries = false;
 #endif
     if (forceDebugQtLibraries != applicationDebugBuild) {
-        if (forceDebugQtLibraries) {
+        /*if (forceDebugQtLibraries) {
             qWarning()
                     << tr("WARNING: Application was built with QT_DEBUG but has loaded RELEASE qt libraries, component system will load DEBUG components instead.");
         } else {
             qWarning()
                     << tr("WARNING: Application was built with QT_NO_DEBUG but has loaded DEBUG qt libraries, component system will load RELEASE components instead.");
-        }
+        }*/
 
         applicationDebugBuild = forceDebugQtLibraries;
     }
