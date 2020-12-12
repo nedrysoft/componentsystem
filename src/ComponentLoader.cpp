@@ -27,7 +27,22 @@
 #include <QLibrary>
 #include <QLibraryInfo>
 #include <QMap>
+#include <QMetaEnum>
 #include <QPluginLoader>
+
+#if defined(USE_SPDLOG)
+#include <spdlog/spdlog.h>
+#else
+namespace spdlog {
+    void warn(std::string) {
+
+    }
+
+    void info(std::string) {
+
+    }
+}
+#endif
 
 constexpr unsigned int QtMajorBitMask = 0xFFFF0000;
 constexpr unsigned int QtMajorBitShift = 16;
@@ -65,13 +80,15 @@ void Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
     auto forceDebugQtLibraries = false;
 #endif
     if (forceDebugQtLibraries != applicationDebugBuild) {
-        /*if (forceDebugQtLibraries) {
-            qWarning()
-                    << tr("WARNING: Application was built with QT_DEBUG but has loaded RELEASE qt libraries, component system will load DEBUG components instead.");
+        QString warningMessage;
+
+        if (forceDebugQtLibraries) {
+            warningMessage = tr("Application was built with QT_DEBUG but has loaded RELEASE qt libraries, component system will load DEBUG components instead.");
         } else {
-            qWarning()
-                    << tr("WARNING: Application was built with QT_NO_DEBUG but has loaded DEBUG qt libraries, component system will load RELEASE components instead.");
-        }*/
+            warningMessage = tr("Application was built with QT_NO_DEBUG but has loaded DEBUG qt libraries, component system will load RELEASE components instead.");
+        }
+
+        spdlog::warn(warningMessage.toStdString());
 
         applicationDebugBuild = forceDebugQtLibraries;
     }
@@ -137,11 +154,11 @@ void Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
                                                                    metaDataObject);
 
         if (componentQtVersion.majorVersion() != applicationQtVersion.majorVersion()) {
-            component->m_loadStatus |= IncompatibleQtVersion;
+            component->m_loadFlags.setFlag(IncompatibleQtVersion);
         }
 
         if (m_componentSearchList.contains(componentName.toString())) {
-            component->m_loadStatus |= NameClash;
+            component->m_loadFlags.setFlag(NameClash);
         }
 
         m_componentSearchList[componentName.toString()] = component;
@@ -165,7 +182,7 @@ void Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
 
         auto component = componentIterator.value();
 
-        if (component->m_loadStatus) {
+        if (component->m_loadFlags) {
             continue;
         }
 
@@ -182,11 +199,11 @@ void Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
                                          QVersionNumber::fromString(dependencyVersion));
             else {
                 component->m_missingDependencies.append(dependencyName);
-                component->m_loadStatus |= MissingDependency;
+                component->m_loadFlags |= MissingDependency;
             }
         }
 
-        if (!component->m_loadStatus) {
+        if (!component->m_loadFlags) {
             componentLoadList.append(component);
         }
     }
@@ -212,19 +229,23 @@ void Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
     // load the components that we have satisfied dependencies for
 
     for (auto component : resolvedLoadList) {
-        if (component->m_loadStatus) {
+        if (component->m_loadFlags) {
+            spdlog::warn(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
             continue;
         }
 
         component->validateDependencies();
 
-        if (component->m_loadStatus) {
+        if (component->m_loadFlags) {
+            spdlog::warn(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
             continue;
         }
 
         if (loadFunction) {
             if (!loadFunction(component)) {
-                component->m_loadStatus |= Nedrysoft::ComponentSystem::ComponentLoader::Disabled;
+                component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::Disabled);
+
+                spdlog::warn(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
                 continue;
             }
         }
@@ -234,24 +255,28 @@ void Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
         auto pluginLoader = new QPluginLoader(component->filename());
 
         if (!pluginLoader->load()) {
-            qDebug() << pluginLoader->errorString();
-            component->m_loadStatus |= Nedrysoft::ComponentSystem::ComponentLoader::LoadStatus;
+            component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::UnableToLoad);
 
             delete pluginLoader;
+
+            spdlog::warn(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
 
             continue;
         }
 
-        auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(
-                pluginLoader->instance());
+        auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(pluginLoader->instance());
 
         if (!componentInterface) {
-            component->m_loadStatus |= Nedrysoft::ComponentSystem::ComponentLoader::MissingInterface;
+            component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::MissingInterface);
 
             delete pluginLoader;
 
+            spdlog::warn(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
+
             continue;
         }
+
+        spdlog::info(QString("component %1 was loaded.").arg(component->name()).toStdString());
 
         m_loadOrder.append(QPair<QPluginLoader *, Component *>(pluginLoader, component));
 
@@ -306,4 +331,10 @@ void Nedrysoft::ComponentSystem::ComponentLoader::resolve(Nedrysoft::ComponentSy
     }
 
     resolvedList.append(component);
+}
+
+QString Nedrysoft::ComponentSystem::ComponentLoader::loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags) {
+    auto metaEnum = QMetaEnum::fromType<Nedrysoft::ComponentSystem::ComponentLoader::LoadFlag>();
+
+    return QString::fromLatin1(metaEnum.valueToKeys(flags)).replace("|"," | ");
 }

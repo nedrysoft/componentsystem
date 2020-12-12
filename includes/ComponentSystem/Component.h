@@ -21,6 +21,7 @@
 #define NEDRYSOFT_COMPONENTSYSTEM_COMPONENT_H
 
 #include "ComponentSystemSpec.h"
+#include "ComponentLoader.h"
 
 #include <QDataStream>
 #include <QJsonObject>
@@ -258,7 +259,7 @@ namespace Nedrysoft::ComponentSystem {
             QList<Nedrysoft::ComponentSystem::Component *> m_dependencies;
             QJsonObject m_metadata;
             bool m_isLoaded;
-            int m_loadStatus;
+            Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags m_loadFlags;
             QList<QString> m_missingDependencies;
             QMap<Nedrysoft::ComponentSystem::Component *, QVersionNumber> m_dependencyVersions;
     };

@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "includes/ComponentSystem/IComponent.h"
+#include "ComponentSystem/IComponent.h"
 
 Nedrysoft::ComponentSystem::IComponent::~IComponent() = default;
 

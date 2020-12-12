@@ -26,6 +26,7 @@
 #include <QMap>
 #include <QObject>
 #include <QPair>
+#include <QDebug>
 
 class QPluginLoader;
 
@@ -53,16 +54,20 @@ namespace Nedrysoft::ComponentSystem {
              * @details     Bit flags for load status
              *
              */
-            enum LoadStatus {
-                Loaded = 0,
-                IncompatibleQtVersion = 1,
-                NameClash = 2,
-                MissingDependency = 4,
-                Disabled = 8,
-                IncompatibleVersion = 16,
-                LoadStatus = 32,
-                MissingInterface = 64
+            enum LoadFlag {
+                Unloaded = 0,
+                Loaded = 1,
+                IncompatibleQtVersion = 2,
+                NameClash = 4,
+                MissingDependency = 8,
+                Disabled = 16,
+                IncompatibleVersion = 32,
+                UnableToLoad = 64,
+                MissingInterface = 128
             };
+            Q_ENUM(LoadFlag)
+            Q_DECLARE_FLAGS(LoadFlags, LoadFlag)
+            Q_FLAGS(LoadFlags)
 
         public:
             /**
@@ -146,10 +151,23 @@ namespace Nedrysoft::ComponentSystem {
                          QList<Nedrysoft::ComponentSystem::Component *> &resolvedList,
                          QList<Nedrysoft::ComponentSystem::Component *> &processedList);
 
+            /**
+             * @brief           Returns a string containing the flags that were set.
+             *
+             * @param[in]       flags the flags value to be converted to a string.
+             *
+             * @returns         a string containing the list of flags that were set.
+             */
+            QString loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags);
+
         private:
             QList<QPair<QPluginLoader *, Nedrysoft::ComponentSystem::Component *> > m_loadOrder;
             QMap<QString, Nedrysoft::ComponentSystem::Component *> m_componentSearchList;
     };
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags)
+Q_DECLARE_METATYPE(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags)
+Q_DECLARE_METATYPE(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlag)
 
 #endif // NEDRYSOFT_COMPONENTSYSTEM_COMPONENTLOADER_H

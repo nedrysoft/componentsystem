@@ -25,7 +25,7 @@
 
 Nedrysoft::ComponentSystem::Component::Component() :
         m_isLoaded(false),
-        m_loadStatus(0) {
+        m_loadFlags(ComponentLoader::Unloaded) {
 
 }
 
@@ -34,7 +34,7 @@ Nedrysoft::ComponentSystem::Component::Component(QString name, QString filename,
         m_filename(std::move(filename)),
         m_metadata(std::move(metadata)),
         m_isLoaded(false),
-        m_loadStatus(0) {
+        m_loadFlags(ComponentLoader::Unloaded) {
 
 }
 
@@ -60,7 +60,7 @@ bool Nedrysoft::ComponentSystem::Component::isLoaded() {
 }
 
 int Nedrysoft::ComponentSystem::Component::loadStatus() {
-    return m_loadStatus;
+    return m_loadFlags;
 }
 
 QStringList Nedrysoft::ComponentSystem::Component::missingDependencies() {
@@ -168,10 +168,10 @@ bool Nedrysoft::ComponentSystem::Component::canBeDisabled() {
 void Nedrysoft::ComponentSystem::Component::validateDependencies() {
     for (auto dependency : m_dependencies) {
         if (!dependency->isLoaded()) {
-            m_loadStatus |= Nedrysoft::ComponentSystem::ComponentLoader::MissingDependency;
+            m_loadFlags |= Nedrysoft::ComponentSystem::ComponentLoader::MissingDependency;
         } else {
             if (dependency->version() < m_dependencyVersions[dependency]) {
-                m_loadStatus |= Nedrysoft::ComponentSystem::ComponentLoader::IncompatibleVersion;
+                m_loadFlags |= Nedrysoft::ComponentSystem::ComponentLoader::IncompatibleVersion;
             }
         }
     }
