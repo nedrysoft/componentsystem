@@ -28,18 +28,15 @@
 
 namespace Nedrysoft::ComponentSystem {
     /**
-     * @brief       IComponent
+     * @brief       The IComponent interface defines the contract for a loadable component.
      *
-     * @details     Interface that a component must implement, the plugin system
-     *              will call various functions to load and initialise the plugin
-     *              at the appropriate time.
-     *
+     * @details     Interface that a component must implement, the plugin system will call various functions to
+     *              load and initialise the plugin at the appropriate time.
      */
     class COMPONENT_SYSTEM_DLLSPEC IComponent {
         public:
             /**
-             * @brief Destructor
-             *
+             * @brief       Destroys the IComponent.
              */
             virtual ~IComponent();
 
@@ -48,7 +45,6 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @details     Called by the component loader after all components have been
              *              loaded, called in load order.
-             *
              */
             virtual void initialiseEvent();
 
@@ -57,7 +53,6 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @details     Called by the component loader after all components have been
              *              initialised, called in reverse load order.
-             *
              */
             virtual void initialisationFinishedEvent();
     };
