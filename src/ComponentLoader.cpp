@@ -276,6 +276,8 @@ void Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
             continue;
         }
 
+        component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::Loaded);
+
         spdlog::info(QString("component %1 was loaded.").arg(component->name()).toStdString());
 
         m_loadOrder.append(QPair<QPluginLoader *, Component *>(pluginLoader, component));
