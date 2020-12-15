@@ -94,6 +94,10 @@ void Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
     }
 #endif
 
+    spdlog::info(QString("Searching folder for components %1")
+            .arg(componentFolder).toStdString());
+
+
     QDirIterator dir(componentFolder);
 
     // find compatible components, and create a list of components to consider for loading
@@ -108,6 +112,9 @@ void Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
         }
 
         auto pluginloader = new QPluginLoader(componentFilename);
+
+        spdlog::info(QString("Found Component %1")
+                             .arg(componentFilename).toStdString());
 
         auto metaDataObject = pluginloader->metaData();
 
