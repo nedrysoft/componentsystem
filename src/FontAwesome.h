@@ -32,22 +32,19 @@
 
 namespace Nedrysoft {
     /**
-     * @brief           FontAwesome library
-     *
-     * @details         Provides helper functions to make use of the FontAwesome library
-     *
+     * @brief           The FontAwesome class provides functions to use the FontAwesome library.
      */
     class NEDRYSOFT_FONTAWESOME_DLLSPEC FontAwesome {
         private:
             /**
-             * @brief       get the singleton instance of the font awesome object
+             * @brief       Gets the singleton instance of the font awesome object.
              *
-             * @return      the singleton object
+             * @return      the singleton object.
              */
             static FontAwesome *getInstance();
 
             /**
-             * @brief       Constructor
+             * @brief       Constructs a new FontAwesome instance.
              *
              */
             FontAwesome();
@@ -55,52 +52,48 @@ namespace Nedrysoft {
         public:
 
             /**
-             * @brief       brandsName
+             * @brief       Returns the name of the brands font.
              *
-             * @return      the name of the brands font
-             *
+             * #returns     the name of the brands font.
              */
             static QString brandsName();
 
             /**
-             * @brief       regularName
+             * @brief       Returns the name of the regular font.
              *
-             * @return      the name of the regular font
+             * @returns     the name of the regular font.
              *
              */
             static QString regularName();
 
             /**
-             * @brief       solidName
+             * @brief       Returns the name of the solid font.
              *
-             * @return      the name of the solid font
+             * @returns     the name of the solid font.
              *
              */
             static QString solidName();
 
             /**
-             * @brief       richText
+             * @brief       Returns a rich text with FontAwesome glyphs.
              *
              * @details     takes a QString with tags in [fas|fab|far <glyph name>] and produces a HTML rich text
              *              which then includes the respective font awesome glyhs in
              *
-             * @param[in]   string          text to convert
+             * @param[in]   string the text to convert.
              *
-             * @return      the resulting rich text
-             *
+             * @returns     the rich text.
              */
             static QString richText(QString string);
 
             /**
-             * @brief       icon
+             * @brief       Returns a QIcon of a font anwesome glyph.
              *
-             * @details     creates q QIcon from the font-awesome glyph in the appropriate colour
+             * @param[in]   glpyhName the name of the font awesome glyph,
+             * @param[in]   pointSize the size in points of the icon.
+             * @param[in]   colour the colour for the resulting icon.
              *
-             * @param[in]   glpyhName       the name of the font awesome glpyh
-             * @param[in]   pointSize       size in points
-             * @param[in]   colour          the colour for the resulting glyph
-             *
-             * @return      the created QIcon
+             * @return      the QIcon of the FontAwesome glyph.
              */
             static QIcon icon(QString glpyhName, int pointSize, QColor colour);
 

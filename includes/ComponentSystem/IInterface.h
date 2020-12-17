@@ -26,11 +26,10 @@
 
 namespace Nedrysoft::ComponentSystem {
     /**
-     * @brief       Root IInterface definition
+     * @brief       The IInterface class is the root level object for all objects.
      *
-     * @details     All objects that reside in the component system should inherit this
-     *              interface for future compatibility.
-     *
+     * @details     All objects that reside in the component system should inherit this interface for future c
+     *              ompatibility.
      */
     class COMPONENT_SYSTEM_DLLSPEC IInterface :
             public QObject {
@@ -40,7 +39,7 @@ namespace Nedrysoft::ComponentSystem {
 
         public:
             /**
-             * @brief Destructor
+             * @brief   Destroys the IInterface.
              *
              */
             virtual ~IInterface() = default;

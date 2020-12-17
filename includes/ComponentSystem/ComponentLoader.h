@@ -34,12 +34,11 @@ namespace Nedrysoft::ComponentSystem {
     class Component;
 
     /**
-     * @brief       Component Loader
+     * @brief       The ComponentLoader loads the discovered components.
      *
-     * @details     Generic plugin loader, finds compatible components in a given folder
-     *              and using the metadatav ensures that any dependencies are available and
-     *              that all dependencies are loaded in the correct order.
-     *
+     * @details     Generic plugin loader, finds compatible components in a given folder and using the metadata
+     *              ensures that any dependencies are available and that all dependencies are loaded in the correct
+     *              order.
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentLoader :
             public QObject {
@@ -49,10 +48,9 @@ namespace Nedrysoft::ComponentSystem {
 
         public:
             /**
-             * @brief       LoadStatus
+             * @brief       The load status flags.
              *
-             * @details     Bit flags for load status
-             *
+             * @details     Bit flags for load status.
              */
             enum LoadFlag {
                 Unloaded = 0,
@@ -71,92 +69,83 @@ namespace Nedrysoft::ComponentSystem {
 
         public:
             /**
-             * @brief       Constructor
+             * @brief       Constructs a ComponentLoader which is a child of the parent.
              *
-             * @param[in]   parent the parent object
-             *
+             * @param[in]   parent the parent object.
              */
             explicit ComponentLoader(QObject *parent = nullptr);
 
             /**
-             * @brief       Destructor
-             *
+             * @brief       Destroys the ComponentLoader.
              */
             ~ComponentLoader();
 
             /**
-             * @brief       addComponents
+             * @brief       Add all components in the given folder to the load list.
              *
-             * @details     Searches the given directory and adds any loadable
-             *              components to the list of components to be loaded
+             * @details     Searches the given directory and adds any loadable components to the list of components
+             *              to be loaded.
              *
-             * @param[in]   componentFolder         Search folder
-             *
+             * @param[in]   componentFolder the earch folder.
              */
             void addComponents(const QString &componentFolder);
 
             /**
-             * @brief       loadComponents
+             * @brief       Loads all discovered components.
              *
-             * @details     Loads the components
-             *
-             * @param[in]   loadFunction
+             * @param[in]   loadFunction the load function is a callback that allows the application to selectively
+             *              load components, i.e the user can disable certain components.
              */
             void loadComponents(std::function<bool(Nedrysoft::ComponentSystem::Component *)> loadFunction = nullptr);
 
             /**
-             * @brief       components
+             * @brief       Retuns the list of all discovered components.
              *
-             * @details     Returns the list of components that were found, the state
-             *              of whether the component was loaded is updated along with
-             *              an error code for each component if a component could not
+             * @details     Returns the list of components that were found, the state of whether the component was
+             *              loaded is updated along with an error code for each component if a component could not
              *              be loaded.
              *
-             * @return      List of components
+             * @returns     the list of components.
              *
              */
             QList<Component *> components();
 
         private:
             /**
-             * @brief       resolve
+             * @brief       Resolves the dependencies of the loaded components.
              *
-             * @details     For a given component, returns a list of components in the order
-             *              that they must be loaded in order to satisfy all component and
-             *              sub component dependencies.
+             * @details     For a given component, returns a list of components in the order that they must be loaded
+             *              in order to satisfy all component and sub component dependencies.
              *
-             * @param[in]   component the component to resolve
-             * @param[out]  resolvedList ordered list of components
-             *
+             * @param[in]   component the component to resolve.
+             * @param[out]  resolvedList the ordered list of components.
              */
             void resolve(Nedrysoft::ComponentSystem::Component *component,
                          QList<Nedrysoft::ComponentSystem::Component *> &resolvedList);
 
             /**
-             * @brief           resolve
+             * @brief           Resolves the dependencies of the loaded components.
              *
-             * @details         For a given component, returns a list of components in the order
-             *                  that they must be loaded in order to satisfy all component and
-             *                  sub component dependencies.
+             * @details         For a given component, returns a list of components in the order that they must be
+             *                  loaded in order to satisfy all component and sub component dependencies.
              *
-             *                  This overload uses a list to mark nodes as already processed, this
-             *                  allows us to detect circular references.
+             *                  This overload uses a list to mark nodes as already processed, this allows us to detect
+             *                  circular references.
              *
-             * @param[in]       component the component to resolve
-             * @param[in,out]   processedList list of nodes that have already been processed
-             * @param[out]      resolvedList ordered list of components
-             *
+             * @param[in]       component the component to resolve.
+             * @param[in,out]   processedList list of nodes that have already been processed.
+             * @param[out]      resolvedList ordered list of components.
              */
             void resolve(Nedrysoft::ComponentSystem::Component *component,
                          QList<Nedrysoft::ComponentSystem::Component *> &resolvedList,
                          QList<Nedrysoft::ComponentSystem::Component *> &processedList);
 
             /**
-             * @brief           Returns a string containing the flags that were set.
+             * @brief       Returns a string containing the flags that were set.
              *
-             * @param[in]       flags the flags value to be converted to a string.
+             * @param[in]   flags the flags value to be converted to a string.
              *
-             * @returns         a string containing the list of flags that were set.
+             * @returns     a string containing the list of flags that were set.
              */
             QString loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags);
 

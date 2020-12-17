@@ -27,11 +27,10 @@
 
 namespace Nedrysoft::ComponentSystem {
     /**
-     * @brief       IComponentManager
+     * @brief       The IComponentManager defines the contract for a class to manage loaded components.
      *
-     * @details     Singleton instance of the component manager, manages the storing of
-     *              objects for any loaded component in a global "registry".
-     *
+     * @details     In addition to handling the management of components, this class also provides a global
+     *              registry for components.
      */
     class COMPONENT_SYSTEM_DLLSPEC IComponentManager :
             public QObject {
@@ -41,48 +40,43 @@ namespace Nedrysoft::ComponentSystem {
 
         private:
             /**
-             * @brief       `Constructor
+             * @brief       `Constrcuts a new IComponentManager.
              *
              */
             IComponentManager() = default;
 
             /**
-             * @brief       Destructor
+             * @brief       Destroys the IComponentManager.
              *
              */
             ~IComponentManager();
 
         public:
-
             /**
-             * @brief       Add an object to the object registry
+             * @brief       Add an object to the object registry.
              *
-             * @param[in]   object object to store
-             *
+             * @param[in]   object object to store.
              */
             void addObject(QObject *object);
 
             /**
-             * @brief       Removes an object to the object registry
+             * @brief       Removes an object to the object registry.
              *
-             * @param[in]   object object to store
-             *
+             * @param[in]   object object to remove.
              */
             void removeObject(QObject *object);
 
             /**
-             * @brief       Return all objects
+             * @brief       Returns a list of all objects in the registry.
              *
-             * @returns     returns a list of all objects
-             *
+             * @returns     returns a list of all objects.
              */
             QList<QObject *> allObjects();
 
             /**
-             * @brief       Returns the singleton instance to the ComponentManager object
+             * @brief       Returns the singleton instance to the ComponentManager object.
              *
              * @returns     the singleton instance
-             *
              */
             static IComponentManager *getInstance();
 
@@ -92,7 +86,7 @@ namespace Nedrysoft::ComponentSystem {
 }
 
 /**
- * @brief       Convenience functions to manipulate the object registry
+ * @brief       Convenience functions to manipulate the object registr.
  *
  * @example     Nedrysoft::ComponentSystem:addObject(object);
  *
@@ -105,19 +99,18 @@ namespace Nedrysoft::ComponentSystem {
  */
 namespace Nedrysoft::ComponentSystem {
     /**
-     * @brief       Adds an object to the registry
+     * @brief       Adds an object to the registry.
      *
-     * @param[in]   object      the object
-     *
+     * @param[in]   object the object to add to the registry.
      */
     inline void addObject(QObject *object) {
         return IComponentManager::getInstance()->addObject(object);
     }
 
     /**
-     * @brief       Removes an object to the registry
+     * @brief       Removes an object to the registry.
      *
-     * @param[in]   object      the object
+     * @param[in]   object the object to remove from the registry.
      *
      */
     inline void removeObject(QObject *object) {
@@ -125,9 +118,9 @@ namespace Nedrysoft::ComponentSystem {
     }
 
     /**
-     * @brief       Return all registered objects
+     * @brief       Returns all registered objects.
      *
-     * @return      the list of objects
+     * @returns     the list of objects.
      *
      */
     inline QList<QObject *> allObjects() {
@@ -135,10 +128,9 @@ namespace Nedrysoft::ComponentSystem {
     }
 
     /**
-     * @brief       Return the first matching object of type T
+     * @brief       Returns the first matching object of type T.
      *
-     * @return      the object of type T
-     *
+     * @returns     the object of type T.
      */
     template<typename T>
     inline T *getObject() {
@@ -154,10 +146,9 @@ namespace Nedrysoft::ComponentSystem {
     }
 
     /**
-     * @brief       Returns all objects that implement type T
+     * @brief       Returns all objects that implement type T.
      *
-     * @return      the list of objects implementing type T
-     *
+     * @returns     the list of objects implementing type T.
      */
     template<typename T>
     inline QList<T *> getObjects() {

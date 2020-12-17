@@ -31,12 +31,10 @@ namespace Nedrysoft::ComponentSystem {
     }
 
     /**
-     * @brief       ComponentViewerDialog
+     * @brief       The ComponentViewerDialog provides a dialog which shows all discovered components.
      *
-     * @brief       Dialog that shows the list of components detected by the
-     *              system (although not necessarily loaded).  Allows further
-     *              detailed information to be displayed.
-     *
+     * @brief       Dialog that shows the list of components detected by the system (although not necessarily loaded).
+     *              Allows further detailed information to be displayed.
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentViewerDialog :
             public QDialog {
@@ -46,28 +44,26 @@ namespace Nedrysoft::ComponentSystem {
 
         public:
             /**
-             * @brief       Constructor
+             * @brief       Constructs a new ComponentViewerDialog which is child of the parent.
              *
-             * @param[in]   parent      parent widget
-             *
+             * @param[in]   parent the parent widget.
              */
             explicit ComponentViewerDialog(QWidget *parent = nullptr);
 
             /**
-             * @brief       Destructor
-             *
+             * @brief       Destroys the ComponentViewerDialog.
              */
             ~ComponentViewerDialog();
 
             /**
-             * @brief       Gets the list of disabled components
+             * @brief       Returns the list of disabled components.
              *
              * @details     The dialog allows components to be enabled and disabled from being loaded at the
              *              next startup of the software.  This function returns a list of disabled components
              *              in a reverse domain name format which should be stored and queried by the loader
              *              at startup.
              *
-             * @return      the list of disabled components
+             * @return      the list of disabled components.
              *
              */
             QStringList disabledComponents();
@@ -75,12 +71,12 @@ namespace Nedrysoft::ComponentSystem {
         private:
 
             /**
-             * @brief       Component List double click handler
+             * @brief       Component List double click handler.
              *
              * @details     Opens the ComponentDetailsDialog for the given component that has been double clicked.
              *
-             * @param[in]   item        the item that was double clicked
-             * @param[in]   column      the column that was double clicked
+             * @param[in]   item the item that was double clicked.
+             * @param[in]   column tthe column that was double clicked.
              */
             Q_SLOT void on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
