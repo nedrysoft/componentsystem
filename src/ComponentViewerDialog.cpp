@@ -17,12 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "includes/ComponentSystem/ComponentViewerDialog.h"
+#include "ComponentSystem/ComponentViewerDialog.h"
 
-#include "includes/ComponentSystem/ComponentDetailsDialog.h"
-#include "includes/ComponentSystem/Component.h"
-#include "includes/ComponentSystem/ComponentLoader.h"
-#include "includes/ComponentSystem/IComponentManager.h"
+#include "ComponentSystem/Component.h"
+#include "ComponentSystem/ComponentDetailsDialog.h"
+#include "ComponentSystem/ComponentLoader.h"
+#include "ComponentSystem/IComponentManager.h"
 #include "FontAwesome.h"
 #include "ui_ComponentViewerDialog.h"
 

@@ -20,7 +20,6 @@
 
 #include "FontAwesome.h"
 
-#include <QDebug>
 #include <QFile>
 #include <QFontDatabase>
 #include <QPainter>
