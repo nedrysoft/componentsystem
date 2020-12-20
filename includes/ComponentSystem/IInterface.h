@@ -3,6 +3,10 @@
  *
  * This file is part of the Nedrysoft component system (https://github.com/fizzyade/componentsystem)
  *
+ * A cross-platform plugin system for Qt applications.
+ *
+ * Created by Adrian Carpenter on 04/12/2020.
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
