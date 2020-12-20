@@ -18,7 +18,7 @@
  */
 
 
-#include "FontAwesome.h"
+#include "ComponentSystemFontAwesome.h"
 
 #include <QFile>
 #include <QFontDatabase>

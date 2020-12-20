@@ -67,9 +67,9 @@ if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
         src/ComponentDetailsDialog.ui
         src/ComponentViewerDialog.cpp
         src/ComponentViewerDialog.ui
-        src/FontAwesome.cpp
-        src/FontAwesome.h
-        src/FontAwesome.qrc
+        src/ComponentSystemFontAwesome.cpp
+        src/ComponentSystemFontAwesome.h
+        src/ComponentSystemFontAwesome.qrc
     )
 
     list(APPEND Qt_LIBS "Qt5::Widgets")

@@ -24,17 +24,11 @@
 #include <QMap>
 #include <QString>
 
-#if ( defined(NEDRYSOFT_LIBRARY_FONTAWESOME_EXPORT))
-#define NEDRYSOFT_FONTAWESOME_DLLSPEC Q_DECL_EXPORT
-#else
-#define NEDRYSOFT_FONTAWESOME_DLLSPEC Q_DECL_IMPORT
-#endif
-
 namespace Nedrysoft {
     /**
      * @brief           The FontAwesome class provides functions to use the FontAwesome library.
      */
-    class NEDRYSOFT_FONTAWESOME_DLLSPEC FontAwesome {
+    class FontAwesome {
         private:
             /**
              * @brief       Gets the singleton instance of the font awesome object.

@@ -23,7 +23,7 @@
 #include "ComponentSystem/ComponentDetailsDialog.h"
 #include "ComponentSystem/ComponentLoader.h"
 #include "ComponentSystem/IComponentManager.h"
-#include "FontAwesome.h"
+#include "ComponentSystemFontAwesome.h"
 #include "ui_ComponentViewerDialog.h"
 
 #include <QTreeWidgetItem>
