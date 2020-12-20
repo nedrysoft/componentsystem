@@ -24,6 +24,7 @@
 #include "IComponent.h"
 
 #include <QObject>
+#include <QDebug>
 
 namespace Nedrysoft::ComponentSystem {
     /**

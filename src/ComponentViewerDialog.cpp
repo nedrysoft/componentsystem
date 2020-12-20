@@ -139,7 +139,7 @@ QStringList Nedrysoft::ComponentSystem::ComponentViewerDialog::disabledComponent
 
             if (componentItem->checkState(1) == Qt::Unchecked) {
                 Nedrysoft::ComponentSystem::Component *component = componentItem->data(0,
-                                                                                       Qt::UserRole).value<Nedrysoft::ComponentSystem::Component *>();
+                        Qt::UserRole).value<Nedrysoft::ComponentSystem::Component *>();
 
                 if (component) {
                     disabledComponentList.append(( component->name() + "." + component->vendor()).toLower());
