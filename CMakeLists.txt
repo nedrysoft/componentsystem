@@ -36,6 +36,8 @@ add_definitions(-DQT_NO_KEYWORDS)
 
 add_definitions(-DNEDRYSOFT_LIBRARY_COMPONENTSYSTEM_EXPORT)
 
+include_directories(${CMAKE_BINARY_DIR})    # <- allows ui_ files to be available to the editor
+
 # create the component system library
 
 project(ComponentSystem)

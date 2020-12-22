@@ -31,7 +31,7 @@
 
 constexpr auto BaseHex = 16;
 
-Nedrysoft::FontAwesome *Nedrysoft::FontAwesome::getInstance() {
+auto Nedrysoft::FontAwesome::getInstance() -> Nedrysoft::FontAwesome * {
     static auto instance = new FontAwesome();
 
     return instance;
@@ -101,19 +101,19 @@ Nedrysoft::FontAwesome::FontAwesome() :
     )").arg(m_regularName, m_solidName, m_brandsName);
 }
 
-QString Nedrysoft::FontAwesome::regularName() {
+auto Nedrysoft::FontAwesome::regularName() -> QString {
     return getInstance()->m_regularName;
 }
 
-QString Nedrysoft::FontAwesome::solidName() {
+auto Nedrysoft::FontAwesome::solidName() -> QString {
     return getInstance()->m_solidName;
 }
 
-QString Nedrysoft::FontAwesome::brandsName() {
+auto Nedrysoft::FontAwesome::brandsName() -> QString {
     return getInstance()->m_brandsName;
 }
 
-QString Nedrysoft::FontAwesome::richText(QString string) {
+auto Nedrysoft::FontAwesome::richText(QString string) -> QString {
     auto expression = QRegularExpression(R"(\[(far|fas|fab) ([a-z|\-|0-9]*)\])");
     auto match = QRegularExpressionMatch();
     auto searchIndex = 0;
@@ -158,7 +158,7 @@ QString Nedrysoft::FontAwesome::richText(QString string) {
     return QString("<html>%1<body>%2</body></html>").arg(getInstance()->m_styleString, string);
 }
 
-QIcon Nedrysoft::FontAwesome::icon(QString glpyhName, int pointSize, QColor colour) {
+auto Nedrysoft::FontAwesome::icon(QString glyphName, int pointSize, QColor colour) -> QIcon {
     QPixmap pixmap(pointSize, pointSize);
 
     pixmap.fill(Qt::transparent);
@@ -167,7 +167,7 @@ QIcon Nedrysoft::FontAwesome::icon(QString glpyhName, int pointSize, QColor colo
     auto match = QRegularExpressionMatch();
     auto searchIndex = 0;
 
-    while (glpyhName.indexOf(expression, searchIndex, &match) >= 0) {
+    while (glyphName.indexOf(expression, searchIndex, &match) >= 0) {
         if (!match.hasMatch()) {
             break;
         }

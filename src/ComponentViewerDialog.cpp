@@ -90,7 +90,7 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::ComponentViewerDialog(QWidget
 
             componentItem->setText(0, component->name());
 
-            if (component->canBeDisabled() == false) {
+            if (!component->canBeDisabled()) {
                 componentItem->setData(1, Qt::CheckStateRole, Qt::Checked);
                 componentItem->setDisabled(true);
             } else {
@@ -120,7 +120,10 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::~ComponentViewerDialog() {
     delete ui;
 }
 
-void Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column) {
+auto Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(
+        QTreeWidgetItem *item,
+        int column) -> void {
+
     Q_UNUSED(column)
 
     auto component = item->data(0, Qt::UserRole).value<Nedrysoft::ComponentSystem::Component *>();
@@ -132,7 +135,7 @@ void Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_
     }
 }
 
-QStringList Nedrysoft::ComponentSystem::ComponentViewerDialog::disabledComponents() {
+auto Nedrysoft::ComponentSystem::ComponentViewerDialog::disabledComponents() -> QStringList {
     QStringList disabledComponentList;
 
     for (auto categoryIndex = 0; categoryIndex < ui->componentsTreeWidget->topLevelItemCount(); categoryIndex++) {

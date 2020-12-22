@@ -45,14 +45,12 @@ namespace Nedrysoft::ComponentSystem {
 
         private:
             /**
-             * @brief       `Constrcuts a new IComponentManager.
-             *
+             * @brief       `Constructs a new IComponentManager.
              */
             IComponentManager() = default;
 
             /**
              * @brief       Destroys the IComponentManager.
-             *
              */
             ~IComponentManager();
 
@@ -62,28 +60,28 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @param[in]   object object to store.
              */
-            void addObject(QObject *object);
+            auto addObject(QObject *object) -> void;
 
             /**
              * @brief       Removes an object to the object registry.
              *
              * @param[in]   object object to remove.
              */
-            void removeObject(QObject *object);
+            auto removeObject(QObject *object) -> void;
 
             /**
              * @brief       Returns a list of all objects in the registry.
              *
              * @returns     returns a list of all objects.
              */
-            QList<QObject *> allObjects();
+            auto allObjects() -> QList<QObject *>;
 
             /**
              * @brief       Returns the singleton instance to the ComponentManager object.
              *
              * @returns     the singleton instance
              */
-            static IComponentManager *getInstance();
+            static auto getInstance() -> IComponentManager *;
 
         private:
             QList<QObject *> m_objectList;                              //! The list of objects
@@ -91,7 +89,7 @@ namespace Nedrysoft::ComponentSystem {
 }
 
 /**
- * @brief       Convenience functions to manipulate the object registr.
+ * @brief       Convenience functions to manipulate the object registry.
  *
  * @example     Nedrysoft::ComponentSystem:addObject(object);
  *
@@ -100,7 +98,6 @@ namespace Nedrysoft::ComponentSystem {
  *              auto object = Nedrysoft::ComponentSystem:getObject<IInterface>();
  *
  *              QList<IInterface *> objectList = Nedrysoft::ComponentSystem:getObjects<IInterface>();
- *
  */
 namespace Nedrysoft::ComponentSystem {
     /**
@@ -108,27 +105,25 @@ namespace Nedrysoft::ComponentSystem {
      *
      * @param[in]   object the object to add to the registry.
      */
-    inline void addObject(QObject *object) {
-        return IComponentManager::getInstance()->addObject(object);
+    inline auto addObject(QObject *object) -> void {
+        IComponentManager::getInstance()->addObject(object);
     }
 
     /**
      * @brief       Removes an object to the registry.
      *
      * @param[in]   object the object to remove from the registry.
-     *
      */
-    inline void removeObject(QObject *object) {
-        return IComponentManager::getInstance()->removeObject(object);
+    inline auto removeObject(QObject *object) -> void{
+        IComponentManager::getInstance()->removeObject(object);
     }
 
     /**
      * @brief       Returns all registered objects.
      *
      * @returns     the list of objects.
-     *
      */
-    inline QList<QObject *> allObjects() {
+    inline auto allObjects() -> QList<QObject *> {
         return IComponentManager::getInstance()->allObjects();
     }
 
@@ -138,7 +133,7 @@ namespace Nedrysoft::ComponentSystem {
      * @returns     the object of type T.
      */
     template<typename T>
-    inline T *getObject() {
+    inline auto getObject() -> T* {
         for (auto object : IComponentManager::getInstance()->allObjects()) {
 
             auto castObject = qobject_cast<T *>(object);
@@ -156,7 +151,7 @@ namespace Nedrysoft::ComponentSystem {
      * @returns     the list of objects implementing type T.
      */
     template<typename T>
-    inline QList<T *> getObjects() {
+    inline auto getObjects() -> QList<T *> {
         QList<T *> objectList;
 
         for (auto object : IComponentManager::getInstance()->allObjects()) {

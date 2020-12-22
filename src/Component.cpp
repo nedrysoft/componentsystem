@@ -47,38 +47,38 @@ void Nedrysoft::ComponentSystem::Component::addDependency(Component *dependency,
     m_dependencies.append(dependency);
 }
 
-QString Nedrysoft::ComponentSystem::Component::name() {
+auto Nedrysoft::ComponentSystem::Component::name() -> QString {
     return m_name;
 }
 
-QString Nedrysoft::ComponentSystem::Component::filename() {
+auto Nedrysoft::ComponentSystem::Component::filename() -> QString {
     return m_filename;
 }
 
-QJsonObject Nedrysoft::ComponentSystem::Component::metadata() {
+auto Nedrysoft::ComponentSystem::Component::metadata() -> QJsonObject  {
     return m_metadata;
 }
 
-bool Nedrysoft::ComponentSystem::Component::isLoaded() {
+auto Nedrysoft::ComponentSystem::Component::isLoaded() -> bool {
     return m_isLoaded;
 }
 
-int Nedrysoft::ComponentSystem::Component::loadStatus() {
+auto Nedrysoft::ComponentSystem::Component::loadStatus() ->int {
     return m_loadFlags;
 }
 
-QStringList Nedrysoft::ComponentSystem::Component::missingDependencies() {
+auto Nedrysoft::ComponentSystem::Component::missingDependencies() -> QStringList {
     return m_missingDependencies;
 }
 
-QVersionNumber Nedrysoft::ComponentSystem::Component::version() {
+auto Nedrysoft::ComponentSystem::Component::version() -> QVersionNumber {
     auto componentMetadata = m_metadata["MetaData"].toObject();
     auto componentVersion = componentMetadata["Version"].toString();
 
     return QVersionNumber::fromString(componentVersion);
 }
 
-QString Nedrysoft::ComponentSystem::Component::versionString() {
+auto Nedrysoft::ComponentSystem::Component::versionString() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
     auto componentVersion = componentMetadata["Version"].toString();
     auto componentBranch = componentMetadata["Branch"].toString();
@@ -87,25 +87,25 @@ QString Nedrysoft::ComponentSystem::Component::versionString() {
     return QString("%1-%2 (%3)").arg(componentVersion).arg(componentBranch).arg(componentRevision);
 }
 
-QString Nedrysoft::ComponentSystem::Component::identifier() {
+auto Nedrysoft::ComponentSystem::Component::identifier() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     return ( componentMetadata["Name"].toString() + "." + componentMetadata["Vendor"].toString()).toLower();
 }
 
-QString Nedrysoft::ComponentSystem::Component::category() {
+auto Nedrysoft::ComponentSystem::Component::category() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     return componentMetadata["Category"].toString();
 }
 
-QString Nedrysoft::ComponentSystem::Component::vendor() {
+auto Nedrysoft::ComponentSystem::Component::vendor() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     return componentMetadata["Vendor"].toString();
 }
 
-QString Nedrysoft::ComponentSystem::Component::license() {
+auto Nedrysoft::ComponentSystem::Component::license() -> QString {
     QString licenseText;
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
@@ -118,13 +118,13 @@ QString Nedrysoft::ComponentSystem::Component::license() {
     return licenseText;
 }
 
-QString Nedrysoft::ComponentSystem::Component::copyright() {
+auto Nedrysoft::ComponentSystem::Component::copyright() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     return componentMetadata["Copyright"].toString();
 }
 
-QString Nedrysoft::ComponentSystem::Component::description() {
+auto Nedrysoft::ComponentSystem::Component::description() -> QString {
     QString descriptionText;
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
@@ -137,13 +137,13 @@ QString Nedrysoft::ComponentSystem::Component::description() {
     return descriptionText;
 }
 
-QString Nedrysoft::ComponentSystem::Component::url() {
+auto Nedrysoft::ComponentSystem::Component::url() -> QString {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     return componentMetadata["Url"].toString();
 }
 
-QString Nedrysoft::ComponentSystem::Component::dependencies() {
+auto Nedrysoft::ComponentSystem::Component::dependencies() -> QString {
     QString dependencyText;
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
@@ -159,7 +159,7 @@ QString Nedrysoft::ComponentSystem::Component::dependencies() {
     return dependencyText;
 }
 
-bool Nedrysoft::ComponentSystem::Component::canBeDisabled() {
+auto Nedrysoft::ComponentSystem::Component::canBeDisabled() -> bool {
     auto componentMetadata = m_metadata["MetaData"].toObject();
 
     if (componentMetadata.contains("CanBeDisabled")) {
@@ -169,7 +169,7 @@ bool Nedrysoft::ComponentSystem::Component::canBeDisabled() {
     return true;
 }
 
-void Nedrysoft::ComponentSystem::Component::validateDependencies() {
+auto Nedrysoft::ComponentSystem::Component::validateDependencies() -> void {
     for (auto dependency : m_dependencies) {
         if (!dependency->isLoaded()) {
             m_loadFlags |= Nedrysoft::ComponentSystem::ComponentLoader::MissingDependency;

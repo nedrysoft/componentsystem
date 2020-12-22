@@ -25,20 +25,20 @@
 
 Nedrysoft::ComponentSystem::IComponentManager::~IComponentManager() = default;
 
-Nedrysoft::ComponentSystem::IComponentManager *Nedrysoft::ComponentSystem::IComponentManager::getInstance() {
+auto Nedrysoft::ComponentSystem::IComponentManager::getInstance() -> Nedrysoft::ComponentSystem::IComponentManager * {
     static auto componentManager = new IComponentManager();
 
     return componentManager;
 }
 
-void Nedrysoft::ComponentSystem::IComponentManager::addObject(QObject *object) {
+auto Nedrysoft::ComponentSystem::IComponentManager::addObject(QObject *object) -> void {
     m_objectList.append(object);
 }
 
-void Nedrysoft::ComponentSystem::IComponentManager::removeObject(QObject *object) {
+auto Nedrysoft::ComponentSystem::IComponentManager::removeObject(QObject *object) -> void {
     m_objectList.removeAll(object);
 }
 
-QList<QObject *> Nedrysoft::ComponentSystem::IComponentManager::allObjects() {
+auto Nedrysoft::ComponentSystem::IComponentManager::allObjects() -> QList<QObject *> {
     return m_objectList;
 }

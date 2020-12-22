@@ -36,11 +36,7 @@ namespace Nedrysoft::ComponentSystem {
     }
 
     /**
-     * @brief       ComponentDetailsDialog
-     *
-     * @details     Dialog that shows the metadata information embedded in
-     *              a component.
-     *
+     * @brief       The ComponentDetailsDialog displays the metadata for a component.
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentDetailsDialog :
             public QDialog {
@@ -50,18 +46,17 @@ namespace Nedrysoft::ComponentSystem {
 
         public:
             /**
-             * @brief       Constructor
+             * @brief       Constructs a new ComponentDetailsDialog.
              *
-             * @param[in]       component     the component instance to be viewed
-             * @param[in]       parent        parent widget
-             *
+             * @param[in]   component the component instance to be viewed.
+             * @param[in]   parent the parent widget.
              */
-            explicit ComponentDetailsDialog(Nedrysoft::ComponentSystem::Component *component,
-                                            QWidget *parent = nullptr);
+            explicit ComponentDetailsDialog(
+                    Nedrysoft::ComponentSystem::Component *component,
+                    QWidget *parent = nullptr );
 
             /**
-             * @brief       Destructor
-             *
+             * @brief       Destroys the ComponentDetailsDialog.
              */
             ~ComponentDetailsDialog();
 

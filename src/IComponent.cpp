@@ -25,8 +25,8 @@
 
 Nedrysoft::ComponentSystem::IComponent::~IComponent() = default;
 
-void Nedrysoft::ComponentSystem::IComponent::initialiseEvent() {
+auto Nedrysoft::ComponentSystem::IComponent::initialiseEvent() -> void {
 }
 
-void Nedrysoft::ComponentSystem::IComponent::initialisationFinishedEvent() {
+auto  Nedrysoft::ComponentSystem::IComponent::initialisationFinishedEvent() -> void {
 }

@@ -37,13 +37,12 @@ namespace Nedrysoft {
             /**
              * @brief       Gets the singleton instance of the font awesome object.
              *
-             * @return      the singleton object.
+             * @returns     the singleton object.
              */
             static FontAwesome *getInstance();
 
             /**
              * @brief       Constructs a new FontAwesome instance.
-             *
              */
             FontAwesome();
 
@@ -54,46 +53,44 @@ namespace Nedrysoft {
              *
              * #returns     the name of the brands font.
              */
-            static QString brandsName();
+            static auto brandsName() -> QString;
 
             /**
              * @brief       Returns the name of the regular font.
              *
              * @returns     the name of the regular font.
-             *
              */
-            static QString regularName();
+            static auto regularName() -> QString;
 
             /**
              * @brief       Returns the name of the solid font.
              *
              * @returns     the name of the solid font.
-             *
              */
-            static QString solidName();
+            static auto solidName() -> QString;
 
             /**
              * @brief       Returns a rich text with FontAwesome glyphs.
              *
              * @details     takes a QString with tags in [fas|fab|far <glyph name>] and produces a HTML rich text
-             *              which then includes the respective font awesome glyhs in
+             *              which then includes the respective font awesome glyphs in
              *
              * @param[in]   string the text to convert.
              *
              * @returns     the rich text.
              */
-            static QString richText(QString string);
+            static auto richText(QString string) -> QString;
 
             /**
-             * @brief       Returns a QIcon of a font anwesome glyph.
+             * @brief       Returns a QIcon of a font awesome glyph.
              *
-             * @param[in]   glpyhName the name of the font awesome glyph,
+             * @param[in]   glyphName the name of the font awesome glyph,
              * @param[in]   pointSize the size in points of the icon.
              * @param[in]   colour the colour for the resulting icon.
              *
-             * @return      the QIcon of the FontAwesome glyph.
+             * @returns     the QIcon of the FontAwesome glyph.
              */
-            static QIcon icon(QString glpyhName, int pointSize, QColor colour);
+            static auto icon(QString glyphName, int pointSize, QColor colour) -> QIcon;
 
         private:
             int m_brandsId;

@@ -25,8 +25,10 @@
 
 #include "ui_ComponentDetailsDialog.h"
 
-Nedrysoft::ComponentSystem::ComponentDetailsDialog::ComponentDetailsDialog(Nedrysoft::ComponentSystem::Component *component,
-                                                                QWidget *parent) :
+Nedrysoft::ComponentSystem::ComponentDetailsDialog::ComponentDetailsDialog(
+            Nedrysoft::ComponentSystem::Component *component,
+            QWidget *parent ) :
+
         QDialog(parent),
         ui(new Nedrysoft::ComponentSystem::Ui::ComponentDetailsDialog) {
 

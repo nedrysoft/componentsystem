@@ -32,8 +32,8 @@ namespace Nedrysoft::ComponentSystem {
     /**
      * @brief       The IInterface class is the root level object for all objects.
      *
-     * @details     All objects that reside in the component system should inherit this interface for future c
-     *              ompatibility.
+     * @details     All objects that reside in the component system should inherit this interface for future
+     *              compatibility.
      */
     class COMPONENT_SYSTEM_DLLSPEC IInterface :
             public QObject {

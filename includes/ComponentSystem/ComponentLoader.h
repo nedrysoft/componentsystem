@@ -90,9 +90,9 @@ namespace Nedrysoft::ComponentSystem {
              * @details     Searches the given directory and adds any loadable components to the list of components
              *              to be loaded.
              *
-             * @param[in]   componentFolder the earch folder.
+             * @param[in]   componentFolder the search folder.
              */
-            void addComponents(const QString &componentFolder);
+            auto addComponents(const QString &componentFolder) -> void;
 
             /**
              * @brief       Loads all discovered components.
@@ -100,10 +100,10 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in]   loadFunction the load function is a callback that allows the application to selectively
              *              load components, i.e the user can disable certain components.
              */
-            void loadComponents(std::function<bool(Nedrysoft::ComponentSystem::Component *)> loadFunction = nullptr);
+            auto loadComponents(std::function<bool(Nedrysoft::ComponentSystem::Component *)> loadFunction = nullptr) -> void;
 
             /**
-             * @brief       Retuns the list of all discovered components.
+             * @brief       Returns the list of all discovered components.
              *
              * @details     Returns the list of components that were found, the state of whether the component was
              *              loaded is updated along with an error code for each component if a component could not
@@ -112,7 +112,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the list of components.
              *
              */
-            QList<Component *> components();
+            auto components() -> QList<Component *>;
 
         private:
             /**
@@ -124,8 +124,8 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in]   component the component to resolve.
              * @param[out]  resolvedList the ordered list of components.
              */
-            void resolve(Nedrysoft::ComponentSystem::Component *component,
-                         QList<Nedrysoft::ComponentSystem::Component *> &resolvedList);
+            auto resolve(Nedrysoft::ComponentSystem::Component *component,
+                         QList<Nedrysoft::ComponentSystem::Component *> &resolvedList) -> void;
 
             /**
              * @brief           Resolves the dependencies of the loaded components.
@@ -140,9 +140,9 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in,out]   processedList list of nodes that have already been processed.
              * @param[out]      resolvedList ordered list of components.
              */
-            void resolve(Nedrysoft::ComponentSystem::Component *component,
+            auto resolve(Nedrysoft::ComponentSystem::Component *component,
                          QList<Nedrysoft::ComponentSystem::Component *> &resolvedList,
-                         QList<Nedrysoft::ComponentSystem::Component *> &processedList);
+                         QList<Nedrysoft::ComponentSystem::Component *> &processedList) -> void;
 
             /**
              * @brief       Returns a string containing the flags that were set.
@@ -151,7 +151,7 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @returns     a string containing the list of flags that were set.
              */
-            QString loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags);
+            auto loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags) -> QString;
 
         private:
             QList<QPair<QPluginLoader *, Nedrysoft::ComponentSystem::Component *> > m_loadOrder;

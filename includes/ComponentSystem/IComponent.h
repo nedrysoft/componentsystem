@@ -49,7 +49,7 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @details     Called by the component loader after all components have been loaded, called in load order.
              */
-            virtual void initialiseEvent();
+            virtual auto initialiseEvent() -> void;
 
             /**
              * @brief       The initialisationFinishedEvent function is called by the component loader after all
@@ -58,7 +58,7 @@ namespace Nedrysoft::ComponentSystem {
              * @details     Called by the component loader after all components have been
              *              initialised, called in reverse load order.
              */
-            virtual void initialisationFinishedEvent();
+            virtual auto initialisationFinishedEvent() -> void;
     };
 }
 

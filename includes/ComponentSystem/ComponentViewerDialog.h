@@ -67,10 +67,9 @@ namespace Nedrysoft::ComponentSystem {
              *              in a reverse domain name format which should be stored and queried by the loader
              *              at startup.
              *
-             * @return      the list of disabled components.
-             *
+             * @returns     the list of disabled components.
              */
-            QStringList disabledComponents();
+            auto disabledComponents() -> QStringList;
 
         private:
 
@@ -80,9 +79,9 @@ namespace Nedrysoft::ComponentSystem {
              * @details     Opens the ComponentDetailsDialog for the given component that has been double clicked.
              *
              * @param[in]   item the item that was double clicked.
-             * @param[in]   column tthe column that was double clicked.
+             * @param[in]   column the column that was double clicked.
              */
-            Q_SLOT void on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+            Q_SLOT auto on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column) -> void;
 
         private:
             Ui::ComponentViewerDialog *ui;                              //! The generated ui class for the dialog

@@ -60,14 +60,14 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in]   dependency      The required dependency
              * @param[in]   versionNumber   The required dependency version
              */
-            void addDependency(Component *dependency, QVersionNumber versionNumber);
+            auto addDependency(Component *dependency, QVersionNumber versionNumber) -> void;
 
             /**
              * @brief       Returns the name of the component.
              *
              * @returns     the component name.
              */
-            QString name();
+            auto name() -> QString;
 
             /**
              * @brief       Returns the file name of the component.
@@ -75,14 +75,14 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the component filename.
              *
              */
-            QString filename();
+            auto filename() -> QString;
 
             /**
              * @brief       Returns the decoded metadata for the component as a JSON object.
              *
              * @returns     The component metadata.
              */
-            QJsonObject metadata();
+            auto metadata() -> QJsonObject;
 
             /**
              * @brief       Returns where the component could be loaded.
@@ -93,7 +93,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     true if the component is loaded; otherwise false.
              *
              */
-            bool isLoaded();
+            auto isLoaded() -> bool;
 
             /**
              * @brief       Returns the load status of the component.
@@ -103,7 +103,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the bit field containing information about the load state of the component.
              *
              */
-            int loadStatus();
+            auto loadStatus() -> int;
 
             /**
              * @brief       Returns a list of missing dependencies.
@@ -113,21 +113,21 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @returns     The list of missing dependencies.
              */
-            QStringList missingDependencies();
+            auto missingDependencies() -> QStringList;
 
             /**
              * @brief       Returns the version of the component.
              *
              * @returns     the component version.
              */
-            QVersionNumber version();
+            auto version() -> QVersionNumber;
 
             /**
              * @brief       Returns the version of the component as a formatted string.
              *
              * @return      the formatted version string.
              */
-            QString versionString();
+            auto versionString() -> QString;
 
             /**
              * @brief       Returns the reverse dns identifier of the component.
@@ -135,14 +135,14 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the identifier.
              *
              */
-            QString identifier();
+            auto identifier() -> QString;
 
             /**
              * @brief       Returns the category that this component belongs to.
              *
              * @returns     the category of the component.
              */
-            QString category();
+            auto category() -> QString;
 
             /**
              * @brief       Returns the vendor of the component.
@@ -150,14 +150,14 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the vendor.
              *
              */
-            QString vendor();
+            auto vendor() -> QString;
 
             /**
              * @brief       Returns the license text of the component.
              *
              * @returns     the license text.
              */
-            QString license();
+            auto license() -> QString;
 
             /**
              * @brief       Returns the copyright information for the component.
@@ -165,7 +165,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the copyright text.
              *
              */
-            QString copyright();
+            auto copyright() -> QString;
 
             /**
              * @brief       Returns the description of the component.
@@ -173,7 +173,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the description text.
              *
              */
-            QString description();
+            auto description() -> QString;
 
             /**
              * @brief       Returns the url for the component.
@@ -181,7 +181,7 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the URL.
              *
              */
-            QString url();
+            auto url() -> QString;
 
             /**
              * @brief       Returns the list of dependencies as a string.
@@ -189,17 +189,17 @@ namespace Nedrysoft::ComponentSystem {
              * @returns     the dependencies.
              *
              */
-            QString dependencies();
+            auto dependencies() -> QString;
 
             /**
              * @brief       Returns whether the component can be disabled or not.
              *
-             * @details     Componetns such as Core cannot be disabled as they are critical for the application.
+             * @details     Components such as Core cannot be disabled as they are critical for the application.
              *
              * @return      true if the component can be disabled; otherwise false.
              *
              */
-            bool canBeDisabled();
+            auto canBeDisabled() -> bool;
 
             /**
              * @brief       Validates the dependencies.
@@ -207,7 +207,7 @@ namespace Nedrysoft::ComponentSystem {
              * @details     Validates all dependencies to ensure they are loaded and ensures that the loaded version
              *              meets our minimum requirement.
              */
-            void validateDependencies();
+            auto validateDependencies() -> void;
 
             friend class ComponentLoader;
 
