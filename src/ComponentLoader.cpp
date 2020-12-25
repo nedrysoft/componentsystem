@@ -27,7 +27,6 @@
 #include "includes/ComponentSystem/IComponent.h"
 
 #include <QDirIterator>
-#include <QtGlobal>
 #include <QJsonArray>
 #include <QLibrary>
 #include <QLibraryInfo>
@@ -340,6 +339,27 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::resolve(
     }
 
     resolvedList.append(component);
+}
+
+auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
+    for (auto loadedComponentIterator = m_loadOrder.rbegin();
+         loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
+
+        /*auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(
+                loadedComponentIterator->first->instance());
+
+
+        //TODO: add deiniitaliseEvent
+        componentInterface->initialisationFinishedEvent();*/
+
+        auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
+
+        if (pluginLoader) {
+            pluginLoader->unload();
+
+            delete pluginLoader;
+        }
+    }
 }
 
 auto Nedrysoft::ComponentSystem::ComponentLoader::loadFlagString(

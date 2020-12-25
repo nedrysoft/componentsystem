@@ -23,8 +23,6 @@
 
 #include "includes/ComponentSystem/Component.h"
 
-#include "includes/ComponentSystem/ComponentLoader.h"
-
 #include <QJsonArray>
 
 Nedrysoft::ComponentSystem::Component::Component() :

@@ -25,7 +25,6 @@
 
 #include "ComponentSystem/Component.h"
 #include "ComponentSystem/ComponentDetailsDialog.h"
-#include "ComponentSystem/ComponentLoader.h"
 #include "ComponentSystem/IComponentManager.h"
 #include "ComponentSystemFontAwesome.h"
 #include "ui_ComponentViewerDialog.h"

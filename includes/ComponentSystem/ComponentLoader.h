@@ -114,6 +114,11 @@ namespace Nedrysoft::ComponentSystem {
              */
             auto components() -> QList<Component *>;
 
+            /**
+             * @brief       Unloads all loaded components.
+             */
+            auto unloadComponents() -> void;
+
         private:
             /**
              * @brief       Resolves the dependencies of the loaded components.
