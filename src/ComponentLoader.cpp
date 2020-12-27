@@ -270,7 +270,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
 
         component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::Loaded);
 
-        SPDLOG_INFO(QString("component %1 was loaded.").arg(component->name()).toStdString());
+        SPDLOG_INFO(QString("component %1 is disabled and has not been loaded.").arg(component->name()).toStdString());
 
         m_loadOrder.append(QPair<QPluginLoader *, Component *>(pluginLoader, component));
 
