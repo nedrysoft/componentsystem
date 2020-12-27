@@ -59,6 +59,14 @@ namespace Nedrysoft::ComponentSystem {
              *              initialised, called in reverse load order.
              */
             virtual auto initialisationFinishedEvent() -> void;
+
+            /**
+             * @brief       The finaliseEvent method is called before the component is unloaded.
+             *
+             * @notes       The event is called in reverse load order for all loaded components, once every component
+             *              has been finalised the component manager then unloads all components in thr same order.
+             */
+            virtual auto finaliseEvent() -> void;
     };
 }
 

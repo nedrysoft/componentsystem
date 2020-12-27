@@ -30,3 +30,6 @@ auto Nedrysoft::ComponentSystem::IComponent::initialiseEvent() -> void {
 
 auto  Nedrysoft::ComponentSystem::IComponent::initialisationFinishedEvent() -> void {
 }
+
+auto Nedrysoft::ComponentSystem::IComponent::finaliseEvent() -> void {
+}

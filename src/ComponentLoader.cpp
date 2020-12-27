@@ -34,19 +34,7 @@
 #include <QMetaEnum>
 #include <QPluginLoader>
 
-#if defined(USE_SPDLOG)
-#include <spdlog/spdlog.h>
-#else
-namespace spdlog {
-    void warn(std::string) {
-
-    }
-
-    void info(std::string) {
-
-    }
-}
-#endif
+#include "spdlog.h"
 
 constexpr unsigned int QtMajorBitMask = 0xFFFF0000;
 constexpr unsigned int QtMajorBitShift = 16;
@@ -92,7 +80,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
     }
 #endif
 #endif
-    spdlog::info(QString("Searching folder for components %1")
+    SPDLOG_INFO(QString("Searching folder for components %1")
             .arg(componentFolder).toStdString());
 
     QDirIterator dir(componentFolder);
@@ -110,7 +98,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
 
         auto pluginLoader = new QPluginLoader(componentFilename);
 
-        spdlog::info(QString("Found Component %1")
+        SPDLOG_INFO(QString("Found Component %1")
                              .arg(componentFilename).toStdString());
 
         auto metaDataObject = pluginLoader->metaData();
@@ -282,7 +270,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
 
         component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::Loaded);
 
-        spdlog::info(QString("component %1 was loaded.").arg(component->name()).toStdString());
+        SPDLOG_INFO(QString("component %1 was loaded.").arg(component->name()).toStdString());
 
         m_loadOrder.append(QPair<QPluginLoader *, Component *>(pluginLoader, component));
 
@@ -342,15 +330,24 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::resolve(
 }
 
 auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
+    for (auto loadedComponentIterator = m_loadOrder.rbegin(); loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
+        auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
+
+        if (!pluginLoader) {
+            continue;
+        }
+
+        auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(pluginLoader->instance());
+
+        if (!componentInterface) {
+            continue;
+        }
+
+        componentInterface->finaliseEvent();
+    }
+
     for (auto loadedComponentIterator = m_loadOrder.rbegin();
-         loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
-
-        /*auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(
-                loadedComponentIterator->first->instance());
-
-
-        //TODO: add deiniitaliseEvent
-        componentInterface->initialisationFinishedEvent();*/
+        loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
 
         auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
 

@@ -26,7 +26,7 @@
 Nedrysoft::ComponentSystem::IComponentManager::~IComponentManager() = default;
 
 auto Nedrysoft::ComponentSystem::IComponentManager::getInstance() -> Nedrysoft::ComponentSystem::IComponentManager * {
-    static IComponentManager componentManager;// = new IComponentManager();
+    static IComponentManager componentManager;
 
     return &componentManager;
 }

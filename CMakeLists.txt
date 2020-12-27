@@ -80,7 +80,7 @@ if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
 
     list(APPEND Qt_LIBS "Qt5::Widgets")
 else()
-    set(Viewer_SOURCES "")
+    set(Viewer_SOURCES "" ../../common/spdlog.h)
 endif()
 
 add_library(${PROJECT_NAME} SHARED
