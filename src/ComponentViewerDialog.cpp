@@ -119,9 +119,9 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::~ComponentViewerDialog() {
     delete ui;
 }
 
-auto Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(
+void Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(
         QTreeWidgetItem *item,
-        int column) -> void {
+        int column) {
 
     Q_UNUSED(column)
 

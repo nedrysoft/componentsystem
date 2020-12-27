@@ -81,7 +81,7 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in]   item the item that was double clicked.
              * @param[in]   column the column that was double clicked.
              */
-            Q_SLOT auto on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column) -> void;
+            Q_SLOT void on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
         private:
             Ui::ComponentViewerDialog *ui;                              //! The generated ui class for the dialog
