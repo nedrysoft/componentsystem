@@ -125,7 +125,7 @@ namespace Nedrysoft::ComponentSystem {
             /**
              * @brief       Returns the version of the component as a formatted string.
              *
-             * @return      the formatted version string.
+             * @returns     the formatted version string.
              */
             auto versionString() -> QString;
 
@@ -196,7 +196,7 @@ namespace Nedrysoft::ComponentSystem {
              *
              * @details     Components such as Core cannot be disabled as they are critical for the application.
              *
-             * @return      true if the component can be disabled; otherwise false.
+             * @returns     true if the component can be disabled; otherwise false.
              *
              */
             auto canBeDisabled() -> bool;
