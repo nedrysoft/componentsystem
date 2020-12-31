@@ -101,6 +101,10 @@ Nedrysoft::FontAwesome::FontAwesome() :
     )").arg(m_regularName, m_solidName, m_brandsName);
 }
 
+Nedrysoft::FontAwesome::~FontAwesome() {
+    delete getInstance();
+}
+
 auto Nedrysoft::FontAwesome::regularName() -> QString {
     return getInstance()->m_regularName;
 }

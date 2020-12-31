@@ -46,6 +46,10 @@ namespace Nedrysoft {
              */
             FontAwesome();
 
+            /**
+             * @brief       Destroys the FontAwesome.
+             */
+            ~FontAwesome();
         public:
 
             /**
