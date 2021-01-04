@@ -31,13 +31,7 @@
 
 constexpr auto BaseHex = 16;
 
-auto Nedrysoft::FontAwesome::getInstance() -> Nedrysoft::FontAwesome * {
-    static auto instance = new FontAwesome();
-
-    return instance;
-}
-
-Nedrysoft::FontAwesome::FontAwesome() :
+Nedrysoft::ComponentSystem::FontAwesome::FontAwesome() :
         m_regularId(QFontDatabase::addApplicationFont(":/Nedrysoft/ComponentSystem/FontAwesome/Free-Regular.otf")),
         m_solidId(QFontDatabase::addApplicationFont(":/Nedrysoft/ComponentSystem/FontAwesome/Free-Solid.otf")),
         m_brandsId(QFontDatabase::addApplicationFont(":/Nedrysoft/ComponentSystem/FontAwesome/Free-Brands.otf")) {
@@ -101,23 +95,19 @@ Nedrysoft::FontAwesome::FontAwesome() :
     )").arg(m_regularName, m_solidName, m_brandsName);
 }
 
-Nedrysoft::FontAwesome::~FontAwesome() {
-    delete getInstance();
+auto Nedrysoft::ComponentSystem::FontAwesome::regularName() -> QString {
+    return m_regularName;
 }
 
-auto Nedrysoft::FontAwesome::regularName() -> QString {
-    return getInstance()->m_regularName;
+auto Nedrysoft::ComponentSystem::FontAwesome::solidName() -> QString {
+    return m_solidName;
 }
 
-auto Nedrysoft::FontAwesome::solidName() -> QString {
-    return getInstance()->m_solidName;
+auto Nedrysoft::ComponentSystem::FontAwesome::brandsName() -> QString {
+    return m_brandsName;
 }
 
-auto Nedrysoft::FontAwesome::brandsName() -> QString {
-    return getInstance()->m_brandsName;
-}
-
-auto Nedrysoft::FontAwesome::richText(QString string) -> QString {
+auto Nedrysoft::ComponentSystem::FontAwesome::richText(QString string) -> QString {
     auto expression = QRegularExpression(R"(\[(far|fas|fab) ([a-z|\-|0-9]*)\])");
     auto match = QRegularExpressionMatch();
     auto searchIndex = 0;
@@ -133,8 +123,8 @@ auto Nedrysoft::FontAwesome::richText(QString string) -> QString {
             auto iconId = match.capturedTexts().at(2);
             auto iconCode = QString();
 
-            if (getInstance()->m_glyphMap.contains(iconId)) {
-                iconCode = getInstance()->m_glyphMap[iconId];
+            if (m_glyphMap.contains(iconId)) {
+                iconCode = m_glyphMap[iconId];
             } else {
                 if (( iconId.size() >= 1 ) && (( iconId.size() <= 4 ))) {
                     bool ok = false;
@@ -159,10 +149,10 @@ auto Nedrysoft::FontAwesome::richText(QString string) -> QString {
         }
     }
 
-    return QString("<html>%1<body>%2</body></html>").arg(getInstance()->m_styleString, string);
+    return QString("<html>%1<body>%2</body></html>").arg(m_styleString, string);
 }
 
-auto Nedrysoft::FontAwesome::icon(QString glyphName, int pointSize, QColor colour) -> QIcon {
+auto Nedrysoft::ComponentSystem::FontAwesome::icon(QString glyphName, int pointSize, QColor colour) -> QIcon {
     QPixmap pixmap(pointSize, pointSize);
 
     pixmap.fill(Qt::transparent);
@@ -183,8 +173,8 @@ auto Nedrysoft::FontAwesome::icon(QString glyphName, int pointSize, QColor colou
             QFont::Weight fontWeight;
             QString fontName;
 
-            if (getInstance()->m_glyphMap.contains(iconId)) {
-                iconCode = getInstance()->m_glyphMap[iconId].toInt(nullptr, 16);
+            if (m_glyphMap.contains(iconId)) {
+                iconCode = m_glyphMap[iconId].toInt(nullptr, 16);
             } else {
                 if (( iconId.size() >= 1 ) && (( iconId.size() <= 4 ))) {
                     iconCode = iconId.toInt(nullptr, BaseHex);

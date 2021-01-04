@@ -28,50 +28,36 @@
 #include <QMap>
 #include <QString>
 
-namespace Nedrysoft {
+namespace Nedrysoft::ComponentSystem {
     /**
      * @brief           The FontAwesome class provides functions to use the FontAwesome library.
      */
     class FontAwesome {
-        private:
-            /**
-             * @brief       Gets the singleton instance of the font awesome object.
-             *
-             * @returns     the singleton object.
-             */
-            static FontAwesome *getInstance();
-
+        public:
             /**
              * @brief       Constructs a new FontAwesome instance.
              */
             FontAwesome();
-
-            /**
-             * @brief       Destroys the FontAwesome.
-             */
-            ~FontAwesome();
-        public:
-
             /**
              * @brief       Returns the name of the brands font.
              *
              * #returns     the name of the brands font.
              */
-            static auto brandsName() -> QString;
+            auto brandsName() -> QString;
 
             /**
              * @brief       Returns the name of the regular font.
              *
              * @returns     the name of the regular font.
              */
-            static auto regularName() -> QString;
+            auto regularName() -> QString;
 
             /**
              * @brief       Returns the name of the solid font.
              *
              * @returns     the name of the solid font.
              */
-            static auto solidName() -> QString;
+            auto solidName() -> QString;
 
             /**
              * @brief       Returns a rich text with FontAwesome glyphs.
@@ -83,7 +69,7 @@ namespace Nedrysoft {
              *
              * @returns     the rich text.
              */
-            static auto richText(QString string) -> QString;
+            auto richText(QString string) -> QString;
 
             /**
              * @brief       Returns a QIcon of a font awesome glyph.
@@ -94,7 +80,7 @@ namespace Nedrysoft {
              *
              * @returns     the QIcon of the FontAwesome glyph.
              */
-            static auto icon(QString glyphName, int pointSize, QColor colour) -> QIcon;
+            auto icon(QString glyphName, int pointSize, QColor colour) -> QIcon;
 
         private:
             int m_brandsId;

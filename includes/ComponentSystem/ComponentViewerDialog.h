@@ -34,6 +34,8 @@ namespace Nedrysoft::ComponentSystem {
         class ComponentViewerDialog;
     }
 
+    class FontAwesome;
+
     /**
      * @brief       The ComponentViewerDialog provides a dialog which shows all discovered components.
      *
@@ -85,6 +87,9 @@ namespace Nedrysoft::ComponentSystem {
 
         private:
             Ui::ComponentViewerDialog *ui;                              //! The generated ui class for the dialog
+
+            FontAwesome *m_fontAwesome;
+
     };
 }
 

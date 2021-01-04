@@ -37,9 +37,11 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::ComponentViewerDialog(QWidget
 
     ui->setupUi(this);
 
-    auto minusIcon = Nedrysoft::FontAwesome::icon("fas fa-minus", 16, Qt::darkRed);
-    auto crossIcon = Nedrysoft::FontAwesome::icon("fas fa-times", 16, Qt::darkRed);
-    auto tickIcon = Nedrysoft::FontAwesome::icon("fas fa-check", 16, Qt::darkGreen);
+    m_fontAwesome = new Nedrysoft::ComponentSystem::FontAwesome;
+
+    auto minusIcon = m_fontAwesome->icon("fas fa-minus", 16, Qt::darkRed);
+    auto crossIcon = m_fontAwesome->icon("fas fa-times", 16, Qt::darkRed);
+    auto tickIcon = m_fontAwesome->icon("fas fa-check", 16, Qt::darkGreen);
 
     ui->componentsTreeWidget->setHeaderLabels(
             QStringList() << tr("Name") << tr("Load") << tr("Version") << tr("Vendor"));
@@ -117,6 +119,8 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::ComponentViewerDialog(QWidget
 
 Nedrysoft::ComponentSystem::ComponentViewerDialog::~ComponentViewerDialog() {
     delete ui;
+
+    delete m_fontAwesome;
 }
 
 void Nedrysoft::ComponentSystem::ComponentViewerDialog::on_componentsTreeWidget_itemDoubleClicked(
