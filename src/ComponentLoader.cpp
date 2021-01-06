@@ -49,19 +49,6 @@ Nedrysoft::ComponentSystem::ComponentLoader::ComponentLoader(QObject *parent) :
 }
 
 Nedrysoft::ComponentSystem::ComponentLoader::~ComponentLoader() {
-/*    while (m_loadOrder.count()) {
-        auto loadPair = m_loadOrder.last();
-
-        delete loadPair.second;
-
-
-
-        // there are issues with unloading shared libraries with QSqlDatabase, the safest solution is not to unload the plugins, we
-        // leak and then let Qt/OS reclaim the memory when it exits.  No real issue.
-
-        m_loadOrder.removeLast();
-    }*/
-
     unloadComponents();
 }
 
@@ -228,6 +215,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
     for (auto component : resolvedLoadList) {
         if (component->m_loadFlags) {
             SPDLOG_INFO(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
+
             continue;
         }
 
@@ -235,6 +223,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
 
         if (component->m_loadFlags) {
             SPDLOG_INFO(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
+
             continue;
         }
 
