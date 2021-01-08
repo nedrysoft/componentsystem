@@ -347,9 +347,10 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
         auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
 
         if (pluginLoader) {
-            pluginLoader->unload();
-
-            delete pluginLoader;
+            // TODO: crash under macOS, may be sql related.
+            
+            //pluginLoader->unload();
+            //delete pluginLoader;
         }
 
         m_loadOrder.removeLast();
