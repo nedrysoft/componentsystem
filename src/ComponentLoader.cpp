@@ -65,7 +65,7 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
     }
 #else
     if (applicationDebugBuild) {
-        spdlog::warn(tr("Application was built with QT_NO_DEBUG but has loaded DEBUG qt libraries, component system will load RELEASE components instead."));
+        SPDLOG_WARN(tr("Application was built with QT_NO_DEBUG but has loaded DEBUG qt libraries, component system will load RELEASE components instead.").toStdString());
 
         applicationDebugBuild = false;
     }
