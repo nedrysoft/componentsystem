@@ -323,12 +323,10 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::resolve(
 }
 
 auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
-    for (auto loadedComponentIterator = m_loadOrder.rbegin(); loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
-        auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
+    for (auto loadedComponentIterator = m_loadOrder.rbegin();
+        loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
 
-        if (!pluginLoader) {
-            continue;
-        }
+        auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
 
         auto componentInterface = qobject_cast<Nedrysoft::ComponentSystem::IComponent *>(pluginLoader->instance());
 
@@ -337,24 +335,16 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
         }
 
         componentInterface->finaliseEvent();
-    }
-
-    for (auto loadedComponentIterator = m_loadOrder.rbegin();
-        loadedComponentIterator < m_loadOrder.rend(); loadedComponentIterator++) {
-
-        delete loadedComponentIterator->second;
-
-        auto pluginLoader = qobject_cast<QPluginLoader *>(loadedComponentIterator->first);
 
         if (pluginLoader) {
             // TODO: crash under macOS, may be sql related.
             
             //pluginLoader->unload();
-            //delete pluginLoader;
+            delete pluginLoader;
         }
-
-        m_loadOrder.removeLast();
     }
+
+    m_loadOrder.clear();
 }
 
 auto Nedrysoft::ComponentSystem::ComponentLoader::loadFlagString(
