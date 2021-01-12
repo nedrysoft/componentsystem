@@ -31,10 +31,10 @@ Nedrysoft::ComponentSystem::Component::Component() :
 
 }
 
-Nedrysoft::ComponentSystem::Component::Component(QString name, QString filename, QJsonObject metadata) :
-        m_name(std::move(name)),
-        m_filename(std::move(filename)),
-        m_metadata(std::move(metadata)),
+Nedrysoft::ComponentSystem::Component::Component(const QString &name, const QString &filename, const QJsonObject &metadata) :
+        m_name(name),
+        m_filename(filename),
+        m_metadata(metadata),
         m_isLoaded(false),
         m_loadFlags(ComponentLoader::Unloaded) {
 
@@ -110,7 +110,7 @@ auto Nedrysoft::ComponentSystem::Component::license() -> QString {
     auto licenseContent = componentMetadata["License"].toArray();
 
     for (auto object : licenseContent) {
-        licenseText += object.toString() + "\r\n";
+        licenseText += object.toString();
     }
 
     return licenseText;

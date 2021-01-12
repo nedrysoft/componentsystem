@@ -52,7 +52,7 @@ namespace Nedrysoft::ComponentSystem {
              * @param[in]   filename the filename of the component.
              * @param[in]   metadata the metadata retrieved from the component file.
              */
-            Component(QString name, QString filename, QJsonObject metadata);
+            Component(const QString &name, const QString &filename, const QJsonObject &metadata);
 
             /**
              * @brief       Adds a component dependency to this component.
