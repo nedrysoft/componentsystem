@@ -244,9 +244,9 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::loadComponents(
         if (!pluginLoader->load()) {
             component->m_loadFlags.setFlag(Nedrysoft::ComponentSystem::ComponentLoader::UnableToLoad);
 
-            delete pluginLoader;
+            SPDLOG_INFO(QString("component %1 was not loaded. (%2) [%3]").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).arg(pluginLoader->errorString()).toStdString());
 
-            SPDLOG_INFO(QString("component %1 was not loaded. (%2)").arg(component->name()).arg(loadFlagString(component->m_loadFlags)).toStdString());
+            delete pluginLoader;
 
             continue;
         }
