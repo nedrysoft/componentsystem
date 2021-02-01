@@ -9,7 +9,7 @@ This library takes the Qt plugin system and provides a higher-level way to use i
 
 Components can and should define custom interfaces which other components can find instances of in the object registry.
 
-The application Pingnoo (https://github.com/fizzyade/pingnoo) uses this component system (and indeed was where it was born), and the main application performs just two tasks.
+The application Pingnoo (https://github.com/nedrysoft/pingnoo) uses this component system (and indeed was where it was born), and the main application performs just two tasks.
 
 Firstly it invokes the component loader, which figures out the dependencies and load order, and secondly, it starts the Qt event loop; the components themselves provide the main window and all other functionality.
 
@@ -180,7 +180,7 @@ The metadata is a JSON formatted structure that is retrieved by the Component Lo
     "Description" : [
         "This is a sample component."
     ],
-    "Url" : "https://github.com/fizzyade/componentsystem"
+    "Url" : "https://github.com/nedrysoft/componentsystem"
 }
 
 ```

@@ -1,7 +1,7 @@
 #
 # Copyright (C) 2020 Adrian Carpenter
 #
-# This file is part of the Nedrysoft component system (https://github.com/fizzyade/componentsystem)
+# This file is part of the Nedrysoft component system (https://github.com/nedrysoft/componentsystem)
 #
 # A cross-platform plugin system for Qt applications.
 #
