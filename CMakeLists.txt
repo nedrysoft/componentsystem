@@ -57,6 +57,13 @@ set(library_SOURCES
     src/IComponentManager.cpp
 )
 
+if(WIN32)
+    configure_file("Version.h.in" "Version.h")
+    list(APPEND library_SOURCES "version.rc")
+    add_definitions("-DNEDRYSOFT_MODULE_FILENAME=\"${PROJECT_NAME}.dll\"")
+    add_definitions("-DNEDRYSOFT_MODULE_NAME=\"${PROJECT_NAME}\"")
+endif()
+
 set(Qt_LIBS "Qt5::Core")
 
 include_directories("src" "includes")
