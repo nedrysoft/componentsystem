@@ -30,7 +30,7 @@
 #include <QObject>
 #include <QDebug>
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     /**
      * @brief       The IComponentManager defines the contract for a class to manage loaded components.
      *
@@ -86,7 +86,7 @@ namespace Nedrysoft::ComponentSystem {
         private:
             QList<QObject *> m_objectList;                              //! The list of objects
     };
-}
+}}
 
 /**
  * @brief       Convenience functions to manipulate the object registry.
@@ -99,7 +99,7 @@ namespace Nedrysoft::ComponentSystem {
  *
  *              QList<IInterface *> objectList = Nedrysoft::ComponentSystem:getObjects<IInterface>();
  */
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     /**
      * @brief       Adds an object to the registry.
      *
@@ -164,6 +164,6 @@ namespace Nedrysoft::ComponentSystem {
 
         return objectList;
     }
-}
+}}
 
 #endif // NEDRYSOFT_COMPONENTSYSTEM_ICOMPONENTMANAGER_H

@@ -29,7 +29,7 @@
 #include <QDialog>
 #include <QTreeWidgetItem>
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     namespace Ui {
         class ComponentViewerDialog;
     }
@@ -91,6 +91,6 @@ namespace Nedrysoft::ComponentSystem {
             FontAwesome *m_fontAwesome;
 
     };
-}
+}}
 
 #endif // NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWERDIALOG_H

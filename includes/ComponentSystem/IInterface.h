@@ -28,7 +28,7 @@
 
 #include <QObject>
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     /**
      * @brief       The IInterface class is the root level object for all objects.
      *
@@ -49,7 +49,7 @@ namespace Nedrysoft::ComponentSystem {
             virtual ~IInterface() = default;
 
     };
-}
+}}
 
 Q_DECLARE_INTERFACE(Nedrysoft::ComponentSystem::IInterface, "com.nedrysoft.IInterface/1.0.0")
 

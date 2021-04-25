@@ -34,7 +34,7 @@
 
 class QPluginLoader;
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     class Component;
 
     /**
@@ -162,7 +162,7 @@ namespace Nedrysoft::ComponentSystem {
             QList<QPair<QPluginLoader *, Nedrysoft::ComponentSystem::Component *> > m_loadOrder;
             QMap<QString, Nedrysoft::ComponentSystem::Component *> m_componentSearchList;
     };
-}
+}}
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags)
 Q_DECLARE_METATYPE(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags)

@@ -34,7 +34,7 @@
 #include <QString>
 #include <QVersionNumber>
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     /**
      * @brief           The Component class holds the information about a discovered component.
      */
@@ -221,7 +221,7 @@ namespace Nedrysoft::ComponentSystem {
             QList<QString> m_missingDependencies;
             QMap<Nedrysoft::ComponentSystem::Component *, QVersionNumber> m_dependencyVersions;
     };
-}
+}}
 
 Q_DECLARE_METATYPE(Nedrysoft::ComponentSystem::Component *)
 

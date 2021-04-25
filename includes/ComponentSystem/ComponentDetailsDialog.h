@@ -30,7 +30,7 @@
 
 #include <QDialog>
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     namespace Ui {
         class ComponentDetailsDialog;
     }
@@ -63,6 +63,6 @@ namespace Nedrysoft::ComponentSystem {
         private:
             Ui::ComponentDetailsDialog *ui;                         //! The generated ui class for the dialog
     };
-}
+}}
 
 #endif // NEDRYSOFT_COMPONENTSYSTEM_COMPONENTDETAILSDIALOG_H

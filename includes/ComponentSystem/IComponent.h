@@ -30,7 +30,7 @@
 
 #define NedrysoftComponentInterfaceIID  "com.nedrysoft.IComponent/1.0"
 
-namespace Nedrysoft::ComponentSystem {
+namespace Nedrysoft { namespace ComponentSystem {
     /**
      * @brief       The IComponent interface defines the contract for a loadable component.
      *
@@ -68,7 +68,7 @@ namespace Nedrysoft::ComponentSystem {
              */
             virtual auto finaliseEvent() -> void;
     };
-}
+}}
 
 Q_DECLARE_INTERFACE(Nedrysoft::ComponentSystem::IComponent, NedrysoftComponentInterfaceIID)
 
