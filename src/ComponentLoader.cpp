@@ -54,7 +54,11 @@ Nedrysoft::ComponentSystem::ComponentLoader::~ComponentLoader() {
 
 auto Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &componentFolder) -> void {
     auto applicationDebugBuild = QLibraryInfo::isDebugBuild();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
     auto applicationQtVersion = QLibraryInfo::version();
+#else
+    auto applicationQtVersion = QVersionNumber::fromString(qVersion());
+#endif
 
 #if defined(Q_OS_UNIX) || (( defined(Q_OS_WIN) && defined(__MINGW32__)))
 #if defined(QT_DEBUG)

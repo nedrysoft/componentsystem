@@ -31,6 +31,7 @@
 #include <QObject>
 #include <QPair>
 #include <QDebug>
+#include <functional>
 
 class QPluginLoader;
 
