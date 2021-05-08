@@ -42,8 +42,6 @@ include_directories(${CMAKE_BINARY_DIR})    # <- allows ui_ files to be availabl
 
 project(ComponentSystem)
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
-
 set(library_SOURCES
     includes/ComponentSystem/Component.h
     includes/ComponentSystem/ComponentLoader.h
@@ -64,14 +62,39 @@ if(WIN32)
     add_definitions("-DNEDRYSOFT_MODULE_NAME=\"${PROJECT_NAME}\"")
 endif()
 
-set(Qt_LIBS "Qt5::Core")
+# discover which Qt version is available
+
+if (USE_QT_VERSION)
+    set(QT_VERSION_MAJOR ${USE_QT_VERSION})
+else()
+    find_package(Qt6 COMPONENTS Core QUIET)
+    find_package(Qt5 COMPONENTS Core QUIET)
+
+    if (Qt6_FOUND)
+        set(QT_VERSION_MAJOR 6)
+    elseif(Qt5_FOUND)
+        set(QT_VERSION_MAJOR 5)
+    else()
+        message(FATAL_ERROR, "No valid Qt version was set, and none could be found")
+    endif()
+endif()
+
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core QUIET)
+
+if (NOT Qt${QT_VERSION_MAJOR}_FOUND)
+    message(FATAL_ERROR, "No valid Qt version was set, and none could be found")
+endif()
+
+# end of qt selection/detection
+
+set(Qt_LIBS "Qt${QT_MAJOR_VERSION}::Core")
 
 include_directories("src" "includes")
 
 option(NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER "Include Component Viewer" OFF)
 
 if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
-    find_package(Qt5 COMPONENTS Widgets REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
     set(Viewer_SOURCES
         includes/ComponentSystem/ComponentDetailsDialog.h
@@ -85,7 +108,7 @@ if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
         src/ComponentSystemFontAwesome.qrc
     )
 
-    list(APPEND Qt_LIBS "Qt5::Widgets")
+    list(APPEND Qt_LIBS "Qt${QT_VERSION_MAJOR}::Widgets")
 else()
     set(Viewer_SOURCES "" ../../common/spdlog.h)
 endif()
