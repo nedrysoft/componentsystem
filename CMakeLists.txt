@@ -95,7 +95,9 @@ endif()
 
 # end of qt selection/detection
 
-set(Qt_LIBS "Qt${QT_MAJOR_VERSION}::Core")
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+
+set(Qt_LIBS "Qt${QT_VERSION_MAJOR}::Core")
 
 include_directories("src" "includes")
 
