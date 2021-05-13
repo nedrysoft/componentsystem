@@ -23,10 +23,10 @@
 
 #include <QtGlobal>
 
-#include "includes/ComponentSystem/ComponentLoader.h"
+#include "ComponentLoader.h"
 
-#include "includes/ComponentSystem/Component.h"
-#include "includes/ComponentSystem/IComponent.h"
+#include "Component.h"
+#include "IComponent.h"
 
 #include <QDirIterator>
 #include <QJsonArray>

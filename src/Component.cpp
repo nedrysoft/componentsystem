@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "includes/ComponentSystem/Component.h"
+#include "Component.h"
 
 #include <QJsonArray>
 

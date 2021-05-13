@@ -21,11 +21,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ComponentSystem/ComponentViewerDialog.h"
+#include "ComponentViewerDialog.h"
 
-#include "ComponentSystem/Component.h"
-#include "ComponentSystem/ComponentDetailsDialog.h"
-#include "ComponentSystem/IComponentManager.h"
+#include "Component.h"
+#include "ComponentDetailsDialog.h"
+#include "IComponentManager.h"
 #include "ComponentSystemFontAwesome.h"
 #include "ui_ComponentViewerDialog.h"
 

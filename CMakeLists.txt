@@ -43,16 +43,16 @@ include_directories(${CMAKE_BINARY_DIR})    # <- allows ui_ files to be availabl
 project(ComponentSystem)
 
 set(library_SOURCES
-    includes/ComponentSystem/Component.h
-    includes/ComponentSystem/ComponentLoader.h
-    includes/ComponentSystem/ComponentSystemSpec.h
-    includes/ComponentSystem/IComponent.h
-    includes/ComponentSystem/IComponentManager.h
-    includes/ComponentSystem/IInterface.h
-    src/Component.cpp
+    Src/Component.cpp
+    src/Component.h
     src/ComponentLoader.cpp
+    src/ComponentLoader.h
+    src/ComponentSystemSpec.h
     src/IComponent.cpp
+    src/IComponent.h
     src/IComponentManager.cpp
+    src/IComponentManager.h
+    src/IInterface.h
 )
 
 if(WIN32)
@@ -99,7 +99,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
 set(Qt_LIBS "Qt${QT_VERSION_MAJOR}::Core")
 
-include_directories("src" "includes")
+include_directories("src" "include")
 
 option(NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER "Include Component Viewer" OFF)
 
@@ -107,8 +107,8 @@ if (NEDRYSOFT_COMPONENTSYSTEM_COMPONENTVIEWER)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
     set(Viewer_SOURCES
-        includes/ComponentSystem/ComponentDetailsDialog.h
-        includes/ComponentSystem/ComponentViewerDialog.h
+        src/ComponentDetailsDialog.h
+        src/ComponentViewerDialog.h
         src/ComponentDetailsDialog.cpp
         src/ComponentDetailsDialog.ui
         src/ComponentViewerDialog.cpp

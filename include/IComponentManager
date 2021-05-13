@@ -5,7 +5,7 @@
  *
  * A cross-platform plugin system for Qt applications.
  *
- * Created by Adrian Carpenter on 03/12/2020.
+ * Created by Adrian Carpenter on 12/05/2021.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,24 +21,4 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IComponentManager.h"
-
-Nedrysoft::ComponentSystem::IComponentManager::~IComponentManager() = default;
-
-auto Nedrysoft::ComponentSystem::IComponentManager::getInstance() -> Nedrysoft::ComponentSystem::IComponentManager * {
-    static IComponentManager componentManager;
-
-    return &componentManager;
-}
-
-auto Nedrysoft::ComponentSystem::IComponentManager::addObject(QObject *object) -> void {
-    m_objectList.append(object);
-}
-
-auto Nedrysoft::ComponentSystem::IComponentManager::removeObject(QObject *object) -> void {
-    m_objectList.removeAll(object);
-}
-
-auto Nedrysoft::ComponentSystem::IComponentManager::allObjects() -> QList<QObject *> {
-    return m_objectList;
-}
+#include "../src/IComponentManager.h"
