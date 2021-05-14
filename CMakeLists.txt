@@ -43,7 +43,7 @@ include_directories(${CMAKE_BINARY_DIR})    # <- allows ui_ files to be availabl
 project(ComponentSystem)
 
 set(library_SOURCES
-    Src/Component.cpp
+    src/Component.cpp
     src/Component.h
     src/ComponentLoader.cpp
     src/ComponentLoader.h
