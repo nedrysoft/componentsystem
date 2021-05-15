@@ -30,7 +30,7 @@ By using the registry, there is no "hard" linking to objects, this dynamic yet s
 ***NOTE: You can only store objects that are subclasses of QObject in the registry***
 
 ```c++
-    // adding an object to the registry
+// adding an object to the registry
 
 Nedrysoft::ComponentSystem::addObject(new Label);
 
