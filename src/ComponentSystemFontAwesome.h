@@ -28,9 +28,13 @@
 #include <QMap>
 #include <QString>
 
+//TODO: link to the main FontAwesome library
+
 namespace Nedrysoft::ComponentSystem {
     /**
-     * @brief           The FontAwesome class provides functions to use the FontAwesome library.
+     * @brief       The FontAwesome class provides functions to use the FontAwesome library.
+     *
+     * @class       Nedrysoft::ComponentSystem::FontAwesome FontAwesome.h <FontAwesome>
      */
     class FontAwesome {
         public:
@@ -41,7 +45,7 @@ namespace Nedrysoft::ComponentSystem {
             /**
              * @brief       Returns the name of the brands font.
              *
-             * #returns     the name of the brands font.
+             * @returns     the name of the brands font.
              */
             auto brandsName() -> QString;
 
@@ -62,7 +66,7 @@ namespace Nedrysoft::ComponentSystem {
             /**
              * @brief       Returns a rich text with FontAwesome glyphs.
              *
-             * @details     takes a QString with tags in [fas|fab|far <glyph name>] and produces a HTML rich text
+             * @details     takes a QString with tags in [fas|fab|far \<glyph name\>] and produces a HTML rich text
              *              which then includes the respective font awesome glyphs in
              *
              * @param[in]   string the text to convert.
@@ -83,6 +87,8 @@ namespace Nedrysoft::ComponentSystem {
             auto icon(QString glyphName, int pointSize, QColor colour) -> QIcon;
 
         private:
+            //! @cond
+
             int m_brandsId;
             int m_regularId;
             int m_solidId;
@@ -94,6 +100,8 @@ namespace Nedrysoft::ComponentSystem {
             QString m_styleString;
 
             QMap<QString, QString> m_glyphMap;
+
+            //! @endcond
     };
 }
 

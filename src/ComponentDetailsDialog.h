@@ -37,6 +37,8 @@ namespace Nedrysoft { namespace ComponentSystem {
 
     /**
      * @brief       The ComponentDetailsDialog displays the metadata for a component.
+     *
+     * @class       Nedrysoft::ComponentSystem::ComponentDetailsDialog ComponentDetailsDialog.h <ComponentDetailsDialog>
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentDetailsDialog :
             public QDialog {
@@ -61,7 +63,11 @@ namespace Nedrysoft { namespace ComponentSystem {
             ~ComponentDetailsDialog();
 
         private:
-            Ui::ComponentDetailsDialog *ui;                         //! The generated ui class for the dialog
+            //! @cond
+
+            Ui::ComponentDetailsDialog *ui;
+
+            //! @endcond
     };
 }}
 

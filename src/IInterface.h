@@ -34,6 +34,8 @@ namespace Nedrysoft { namespace ComponentSystem {
      *
      * @details     All objects that reside in the component system should inherit this interface for future
      *              compatibility.
+     *
+     * @class       Nedrysoft::ComponentSystem::IInterface IInterface.h <IInterface>
      */
     class COMPONENT_SYSTEM_DLLSPEC IInterface :
             public QObject {

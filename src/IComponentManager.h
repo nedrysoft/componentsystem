@@ -36,6 +36,8 @@ namespace Nedrysoft { namespace ComponentSystem {
      *
      * @details     In addition to handling the management of components, this class also provides a global
      *              registry for components.
+     *
+     * @class       Nedrysoft::ComponentSystem::IComponentManager IComponentManager.h <IComponentManager>
      */
     class COMPONENT_SYSTEM_DLLSPEC IComponentManager :
             public QObject {
@@ -84,20 +86,22 @@ namespace Nedrysoft { namespace ComponentSystem {
             static auto getInstance() -> IComponentManager *;
 
         private:
-            QList<QObject *> m_objectList;                              //! The list of objects
+            QList<QObject *> m_objectList;
     };
 }}
 
 /**
  * @brief       Convenience functions to manipulate the object registry.
  *
- * @example     Nedrysoft::ComponentSystem:addObject(object);
+ * @code(.cpp)
+ *              Nedrysoft::ComponentSystem::addObject(object);
  *
- *              QList<QObject *> objectList = Nedrysoft::ComponentSystem:allObjects();
+ *              QList<QObject *> objectList = Nedrysoft::ComponentSystem::allObjects();
  *
- *              auto object = Nedrysoft::ComponentSystem:getObject<IInterface>();
+ *              auto object = Nedrysoft::ComponentSystem::getObject<IInterface>();
  *
- *              QList<IInterface *> objectList = Nedrysoft::ComponentSystem:getObjects<IInterface>();
+ *              QList<IInterface *> objectList = Nedrysoft::ComponentSystem::getObjects<IInterface>();
+ * @endcode
  */
 namespace Nedrysoft { namespace ComponentSystem {
     /**

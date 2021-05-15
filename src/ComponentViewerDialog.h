@@ -41,6 +41,8 @@ namespace Nedrysoft { namespace ComponentSystem {
      *
      * @brief       Dialog that shows the list of components detected by the system (although not necessarily loaded).
      *              Allows further detailed information to be displayed.
+     *
+     * @class       Nedrysoft::ComponentSystem::ComponentViewerDialog ComponentViewerDialog.h <ComponentViewerDialog>
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentViewerDialog :
             public QDialog {
@@ -86,10 +88,13 @@ namespace Nedrysoft { namespace ComponentSystem {
             Q_SLOT void on_componentsTreeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
         private:
-            Ui::ComponentViewerDialog *ui;                              //! The generated ui class for the dialog
+            //! @cond
+
+            Ui::ComponentViewerDialog *ui;
 
             FontAwesome *m_fontAwesome;
 
+            //! @endcond
     };
 }}
 

@@ -43,6 +43,8 @@ namespace Nedrysoft { namespace ComponentSystem {
      * @details     Generic plugin loader, finds compatible components in a given folder and using the metadata
      *              ensures that any dependencies are available and that all dependencies are loaded in the correct
      *              order.
+     *
+     * @class       Nedrysoft::ComponentSystem::ComponentLoader ComponentLoader.h <ComponentLoader>
      */
     class COMPONENT_SYSTEM_DLLSPEC ComponentLoader :
             public QObject {
@@ -159,8 +161,12 @@ namespace Nedrysoft { namespace ComponentSystem {
             auto loadFlagString(Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags flags) -> QString;
 
         private:
+            //! @cond
+
             QList<QPair<QPluginLoader *, Nedrysoft::ComponentSystem::Component *> > m_loadOrder;
             QMap<QString, Nedrysoft::ComponentSystem::Component *> m_componentSearchList;
+
+            //! @endcond
     };
 }}
 

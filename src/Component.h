@@ -36,7 +36,9 @@
 
 namespace Nedrysoft { namespace ComponentSystem {
     /**
-     * @brief           The Component class holds the information about a discovered component.
+     * @brief       The Component class holds the information about a discovered component.
+     *
+     * @class       Nedrysoft::ComponentSystem::Component Component.h <Component>
      */
     class COMPONENT_SYSTEM_DLLSPEC Component {
         public:
@@ -212,6 +214,8 @@ namespace Nedrysoft { namespace ComponentSystem {
             friend class ComponentLoader;
 
         private:
+            //! @cond
+
             QString m_name;
             QString m_filename;
             QList<Nedrysoft::ComponentSystem::Component *> m_dependencies;
@@ -220,6 +224,8 @@ namespace Nedrysoft { namespace ComponentSystem {
             Nedrysoft::ComponentSystem::ComponentLoader::LoadFlags m_loadFlags;
             QList<QString> m_missingDependencies;
             QMap<Nedrysoft::ComponentSystem::Component *, QVersionNumber> m_dependencyVersions;
+
+            //! @endcond
     };
 }}
 

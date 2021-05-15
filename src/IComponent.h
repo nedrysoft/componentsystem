@@ -36,6 +36,8 @@ namespace Nedrysoft { namespace ComponentSystem {
      *
      * @details     Interface that a component must implement, the plugin system will call various functions to
      *              load and initialise the plugin at the appropriate time.
+     *
+     * @class       Nedrysoft::ComponentSystem::IComponent IComponent.h <IComponent>
      */
     class COMPONENT_SYSTEM_DLLSPEC IComponent {
         public:
@@ -63,7 +65,7 @@ namespace Nedrysoft { namespace ComponentSystem {
             /**
              * @brief       The finaliseEvent method is called before the component is unloaded.
              *
-             * @notes       The event is called in reverse load order for all loaded components, once every component
+             * @note        The event is called in reverse load order for all loaded components, once every component
              *              has been finalised the component manager then unloads all components in thr same order.
              */
             virtual auto finaliseEvent() -> void;
