@@ -105,8 +105,10 @@ Nedrysoft::ComponentSystem::ComponentViewerDialog::ComponentViewerDialog(QWidget
             componentItem->setText(2, component->versionString());
             componentItem->setText(3, component->vendor());
 
-            componentItem->setData(0, Qt::UserRole,
-                                   QVariant::fromValue<Nedrysoft::ComponentSystem::Component *>(component));
+            componentItem->setData(
+                    0,
+                    Qt::UserRole,
+                    QVariant::fromValue<Nedrysoft::ComponentSystem::Component *>(component) );
 
             categoryItem->addChild(componentItem);
         }
