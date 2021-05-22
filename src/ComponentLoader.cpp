@@ -142,6 +142,10 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::addComponents(const QString &c
                 componentFilename,
                 metaDataObject );
 
+        connect(this, &Nedrysoft::ComponentSystem::ComponentLoader::destroyed, [=](QObject *) {
+            delete component;
+        });
+
         if (componentQtVersion.majorVersion() != applicationQtVersion.majorVersion()) {
             component->m_loadFlags.setFlag(IncompatibleQtVersion);
         }
@@ -343,9 +347,14 @@ auto Nedrysoft::ComponentSystem::ComponentLoader::unloadComponents() -> void {
         componentInterface->finaliseEvent();
 
         if (pluginLoader) {
-            // TODO: crash under macOS, may be sql related.
-            
-            //pluginLoader->unload();
+#if !defined(Q_OS_MACOS)
+            /**
+             * NOTE: calling unload on macOS causes the application to crash, so we leak the memory as it's of no
+             * consequence as all memory will be freed when we exit.  For Windows and Linux we include the unload
+             * for completeness and to stop memory leak analysers reporting a leak.
+             */
+            pluginLoader->unload();
+#endif
             delete pluginLoader;
         }
     }
